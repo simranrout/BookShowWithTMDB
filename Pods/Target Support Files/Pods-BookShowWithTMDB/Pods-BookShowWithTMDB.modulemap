@@ -1,0 +1,6 @@
+framework module Pods_BookShowWithTMDB {
+  umbrella header "Pods-BookShowWithTMDB-umbrella.h"
+
+  export *
+  module * { export * }
+}
