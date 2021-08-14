@@ -13,10 +13,13 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var SignInButton: UIButton!
     @IBOutlet weak var EmailField: UITextField!
     @IBOutlet weak var Password: UITextField!
-  
+    @IBOutlet weak var BackgroundImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Requesting An API CALL
+        APICall.getData()
+        
         BackgroundImageView.alpha = 0.7
         EmailField.autocorrectionType = .no
         //Added Corner Radius (UI Changes)
@@ -27,7 +30,6 @@ class SignInViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-   
     //Action for Sign Up button (new user)
     @IBAction func SignUpButtonTapped(_ sender: Any) {
       
@@ -35,14 +37,13 @@ class SignInViewController: UIViewController {
         
     }
     
-    @IBOutlet weak var BackgroundImageView: UIImageView!
+ 
     
     //Action for Sign In button
     @IBAction func SignInButtonTapped(_ sender: Any) {
         guard EmailField.text != "" && Password.text != "" else{
             return
         }
-        print("yess" , EmailField.text, Password.text)
         changViewController(storyBoardID: "MainViewVC")
    
         
@@ -52,13 +53,4 @@ class SignInViewController: UIViewController {
     
 }
 
-extension UIViewController{
-    func changViewController(storyBoardID : String)  {
-        self.dismiss(animated: true, completion: nil)
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let currentVC = storyboard.instantiateViewController(withIdentifier: storyBoardID)
-        currentVC.modalPresentationStyle = .fullScreen
-        present(currentVC, animated: true, completion: nil)
-    }
-    
-}
+
