@@ -6,9 +6,15 @@
 //
 
 import Foundation
+
+protocol APICallDelegate {
+    func resultFetched(_ MoviesData : [MovieModel])
+}
+
 class APICall{
-    
-   static func getData(){
+   
+    var delegate : APICallDelegate?
+   func getData(){
         let url = URL(string: Constants.API_URL)
         
         guard url != nil else {
@@ -23,6 +29,14 @@ class APICall{
                 do{
                     let decoder = JSONDecoder()
                     let result = try decoder.decode(resultModel.self, from: Data!)
+                    guard result.results != nil else {
+                        print("There is no data available")
+                        return
+                    }
+                    
+                    DispatchQueue.main.async {
+                            self.delegate?.resultFetched(result.results!)
+                    }
                     dump(result)
                 }
                 catch{

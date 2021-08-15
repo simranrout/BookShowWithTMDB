@@ -17,11 +17,11 @@ class SignInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //Requesting An API CALL
-        APICall.getData()
         
         BackgroundImageView.alpha = 0.7
+        
         EmailField.autocorrectionType = .no
+        
         //Added Corner Radius (UI Changes)
         EmailField.layer.cornerRadius = 22
         Password.layer.cornerRadius = 22
@@ -32,9 +32,7 @@ class SignInViewController: UIViewController {
     
     //Action for Sign Up button (new user)
     @IBAction func SignUpButtonTapped(_ sender: Any) {
-      
         changViewController(storyBoardID: "SignUpVC")
-        
     }
     
  

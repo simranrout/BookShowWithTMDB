@@ -11,4 +11,5 @@ struct Constants {
     static var Request = "now_playing"
     static var API_URL = "https://api.themoviedb.org/3/movie/\(Request)?api_key=\(API_Key)&page=1"
     static var thumbnailURL = "https://image.tmdb.org/t/p/w154//"
+    static var MoviePrototypeCellID = "MovieDetailsCell"
 }

@@ -23,9 +23,7 @@ struct MovieModel : Decodable{
         case poster_path
         case release_date
         case original_language
-         
     }
-    
     
     
     init(from decoder: Decoder) throws {
