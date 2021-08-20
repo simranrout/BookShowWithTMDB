@@ -32,7 +32,7 @@ class FetchingImage {
                     imageView.image = UIImage(systemName: "list.and.film")
                 }
                
-                print("url issue" , url)
+               
             }
         }
         dataTask.resume()

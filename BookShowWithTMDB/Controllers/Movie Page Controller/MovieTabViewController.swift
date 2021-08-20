@@ -51,7 +51,7 @@ class MovieTabViewController: UIViewController , UITableViewDelegate , UITableVi
     }
     // MARK :- TableView Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(Results.count)
+        
         return Results.count
     }
     

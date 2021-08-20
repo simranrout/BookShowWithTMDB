@@ -384,10 +384,10 @@
             </objects>
             <point key="canvasLocation" x="4450" y="-347"/>
         </scene>
-        <!--View Controller-->
+        <!--Pdf Generate View Controller-->
         <scene sceneID="AAx-Xh-QyC">
             <objects>
-                <viewController id="fxF-UA-HJ2" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PDFGenerateVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fxF-UA-HJ2" customClass="PdfGenerateViewController" customModule="BookShowWithTMDB" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="F6G-KO-0Zh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -423,6 +423,9 @@
                                 <state key="normal" title="Pay Now">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="PayNowButtonTapped:" destination="fxF-UA-HJ2" eventType="touchUpInside" id="VSQ-iN-bo3"/>
+                                </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kpg-B8-Y3e">
                                 <rect key="frame" x="240" y="-48" width="240" height="128"/>
@@ -451,6 +454,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="our-iK-UeE"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="375" height="812"/>
+                    <connections>
+                        <outlet property="PayNowButton" destination="tHO-MT-fm3" id="BRE-Tc-ImO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R3b-Oz-b8k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

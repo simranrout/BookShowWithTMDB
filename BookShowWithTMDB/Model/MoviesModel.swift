@@ -38,8 +38,7 @@ struct MovieModel : Decodable{
         original_language = try container.decode(String.self, forKey: .original_language)
         poster_path  = try container.decode(String.self, forKey: .poster_path)
          
-//    print(original_language , original_title , overview , poster_path  , release_date , vote_average )
-        
+ 
     }
 }
 

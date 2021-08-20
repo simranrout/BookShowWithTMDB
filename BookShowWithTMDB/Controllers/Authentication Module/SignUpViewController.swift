@@ -39,7 +39,6 @@ class SignUpViewController: UIViewController , UIImagePickerControllerDelegate ,
     }
     
     @objc func tapToHideKeyboard(){
-        print("trueTappedonScreen" , KeyboardHeight)
         view.endEditing(true)
     }
     //Action For SignUpButton pressed Create user
@@ -120,7 +119,6 @@ class SignUpViewController: UIViewController , UIImagePickerControllerDelegate ,
          if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             KeyboardHeight = keyboardFrame.cgRectValue.height
             if !isScrollViewActive{
-                print("views", self.scrollView.frame.height)
                 self.scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.scrollView.frame.height + KeyboardHeight)
                
                 isScrollViewActive = true
