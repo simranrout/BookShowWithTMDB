@@ -37,7 +37,18 @@ class MovieTabViewController: UIViewController , UITableViewDelegate , UITableVi
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+          guard TableView.indexPathForSelectedRow != nil else {
+              return
+          }
+        
+        let updatedResult = Results[TableView.indexPathForSelectedRow!.row]
+        let MovieDetailsVC =  segue.destination as! MovieDetailsViewController
+        MovieDetailsVC.updateMovieDetails = updatedResult
     
+        
+    }
     // MARK :- TableView Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print(Results.count)
@@ -45,11 +56,9 @@ class MovieTabViewController: UIViewController , UITableViewDelegate , UITableVi
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = TableView.dequeueReusableCell(withIdentifier: Constants.MoviePrototypeCellID, for: indexPath)
+        let cell = TableView.dequeueReusableCell(withIdentifier: Constants.MoviePrototypeCellID, for: indexPath) as! MovieTableViewCell
         
-        //Configure the cell with data
-        let title = Results[indexPath.row].original_title
-        cell.textLabel?.text = title
+        cell.displayingDataOnCell(self.Results[indexPath.row])
         
         //return cell
         return cell
@@ -59,10 +68,11 @@ class MovieTabViewController: UIViewController , UITableViewDelegate , UITableVi
     /*
      Tableview will call this function when user taps on a row
      */
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-    }
-    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//
+//
+//    }
+//
     
 
 }

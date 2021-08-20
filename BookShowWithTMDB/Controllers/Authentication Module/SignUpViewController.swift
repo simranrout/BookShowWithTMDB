@@ -9,11 +9,16 @@ import Foundation
 import UIKit
 class SignUpViewController: UIViewController , UIImagePickerControllerDelegate , UINavigationControllerDelegate{
    
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var UserNameField: UITextField!
     @IBOutlet weak var EmailField: UITextField!
     @IBOutlet weak var PasswordField: UITextField!
     @IBOutlet weak var ProfileImageView: UIImageView!
     @IBOutlet weak var SignUpButton: UIButton!
+    @IBOutlet weak var label: UILabel!
+    var KeyboardHeight:CGFloat = 0.0
+    var isScrollViewActive = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         UserNameField.autocorrectionType = .no
@@ -22,32 +27,35 @@ class SignUpViewController: UIViewController , UIImagePickerControllerDelegate ,
         ProfileImageView.layer.cornerRadius = 45
         ProfileImageView.contentMode = .scaleAspectFill
         SignUpButton.layer.cornerRadius = 12
-    
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapToHideKeyboard)) // calling imageViewTapped function
+        view.addGestureRecognizer(tap)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardAppearedOnScreen), name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDisappredOnScreen), name: UIResponder.keyboardDidHideNotification, object: nil)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         addTapGestureOnImageView()
     }
     
+    @objc func tapToHideKeyboard(){
+        print("trueTappedonScreen" , KeyboardHeight)
+        view.endEditing(true)
+    }
     //Action For SignUpButton pressed Create user
     @IBAction func SignUpButtonTapped(_ sender: Any) {
         guard  let username = UserNameField.text ,
                let emailID = EmailField.text ,
                !emailID.trimmingCharacters(in: .whitespaces).isEmpty , !username.trimmingCharacters(in: .whitespaces).isEmpty ,
                username.trimmingCharacters(in: .alphanumerics).isEmpty else {
-            let alert = UIAlertController(title: "Invalid Input", message: "Please Make Sure to Fill All Fields", preferredStyle: .actionSheet)
-            present(alert, animated: true
-                    , completion: nil)
+            singleMessageAlertView(titleText: "Invalid Input", message: "Please enter a valid username...", preferredStyle: .actionSheet)
             return
         }
         
         guard let password = PasswordField.text ,
               password.count >= 8 ,
               !password.trimmingCharacters(in: .whitespaces).isEmpty else {
-            
-            let alert = UIAlertController(title: "Invalid Input", message: "Password Must Be More Than 8 Character", preferredStyle: .actionSheet)
-            present(alert, animated: true
-                    , completion: nil)
+            singleMessageAlertView(titleText: "Invalid Input", message: "Password Must Be More Than 8 Character", preferredStyle: .actionSheet)
             return
         }
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -60,9 +68,7 @@ class SignUpViewController: UIViewController , UIImagePickerControllerDelegate ,
     
     //Action For SignInButton pressed log in 
     @IBAction func SignInButtonPressed(_ sender: Any) {
-//        changViewController(storyBoardID: "SignInVC")
-       
-       
+       changViewController(storyBoardID: "SignInVC")
     }
     
     
@@ -110,6 +116,27 @@ class SignUpViewController: UIViewController , UIImagePickerControllerDelegate ,
         }
         ProfileImageView.image = profileImage as? UIImage
     }
-    
+    @objc func keyboardAppearedOnScreen(_ notification : NSNotification){
+         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            KeyboardHeight = keyboardFrame.cgRectValue.height
+            if !isScrollViewActive{
+                print("views", self.scrollView.frame.height)
+                self.scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.scrollView.frame.height + KeyboardHeight)
+               
+                isScrollViewActive = true
+            }
+             
+               }
+        
+        
+     }
+     @objc func keyboardDisappredOnScreen(){
+         print("height No keyboard" , KeyboardHeight)
+        if isScrollViewActive{
+            self.scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.scrollView.frame.height - KeyboardHeight)
+            isScrollViewActive = false
+        }
+     }
+          
     
 }

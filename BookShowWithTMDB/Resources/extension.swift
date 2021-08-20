@@ -10,11 +10,18 @@ import UIKit
 
 extension UIViewController{
     func changViewController(storyBoardID : String)  {
-        self.dismiss(animated: true, completion: nil)
+       
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let currentVC = storyboard.instantiateViewController(withIdentifier: storyBoardID)
         currentVC.modalPresentationStyle = .fullScreen
         present(currentVC, animated: true, completion: nil)
+    }
+    
+    func singleMessageAlertView(titleText : String , message : String , preferredStyle : UIAlertController.Style ){
+        let alert = UIAlertController(title: titleText, message: message , preferredStyle: preferredStyle)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alert, animated: true
+                , completion: nil)
     }
     
 }

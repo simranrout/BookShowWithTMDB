@@ -24,7 +24,6 @@ class APICall{
         let session = URLSession.shared
         
         let URLDataTask = session.dataTask(with: url!) { Data, Response, Error in
-            
             if Error == nil && Data != nil{
                 do{
                     let decoder = JSONDecoder()
@@ -37,7 +36,7 @@ class APICall{
                     DispatchQueue.main.async {
                             self.delegate?.resultFetched(result.results!)
                     }
-                    dump(result)
+                    
                 }
                 catch{
                     print("There Is Some Issue In Parsing The JSON File")
