@@ -27,20 +27,18 @@ class SignUpViewController: UIViewController , UIImagePickerControllerDelegate ,
         ProfileImageView.layer.cornerRadius = 45
         ProfileImageView.contentMode = .scaleAspectFill
         SignUpButton.layer.cornerRadius = 12
-        let tap = UITapGestureRecognizer(target: self, action: #selector(tapToHideKeyboard)) // calling imageViewTapped function
-        view.addGestureRecognizer(tap)
-        
+
+        addKeyboardTapGesture()
+
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardAppearedOnScreen), name: UIResponder.keyboardDidShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardDisappredOnScreen), name: UIResponder.keyboardDidHideNotification, object: nil)
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         addTapGestureOnImageView()
     }
-    
-    @objc func tapToHideKeyboard(){
-        view.endEditing(true)
-    }
+  
     //Action For SignUpButton pressed Create user
     @IBAction func SignUpButtonTapped(_ sender: Any) {
         guard  let username = UserNameField.text ,
@@ -57,10 +55,7 @@ class SignUpViewController: UIViewController , UIImagePickerControllerDelegate ,
             singleMessageAlertView(titleText: "Invalid Input", message: "Password Must Be More Than 8 Character", preferredStyle: .actionSheet)
             return
         }
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let currentVC = storyboard.instantiateViewController(withIdentifier: "MainViewVC")
-        currentVC.modalPresentationStyle = .fullScreen
-        present(currentVC, animated: true, completion: nil)
+        changViewController(storyBoardID: "MainViewVC")
         print("ID and PWD" , EmailField.text , PasswordField.text , UserNameField.text)
     
     }
@@ -105,6 +100,7 @@ class SignUpViewController: UIViewController , UIImagePickerControllerDelegate ,
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel , handler: nil))
         present(alert, animated: true, completion: nil)
     }
+    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
@@ -115,6 +111,9 @@ class SignUpViewController: UIViewController , UIImagePickerControllerDelegate ,
         }
         ProfileImageView.image = profileImage as? UIImage
     }
+    
+    
+    // Mark :- add  and remove scroll view on key board appearance 
     @objc func keyboardAppearedOnScreen(_ notification : NSNotification){
          if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             KeyboardHeight = keyboardFrame.cgRectValue.height
@@ -123,13 +122,9 @@ class SignUpViewController: UIViewController , UIImagePickerControllerDelegate ,
                
                 isScrollViewActive = true
             }
-             
                }
-        
-        
      }
      @objc func keyboardDisappredOnScreen(){
-         print("height No keyboard" , KeyboardHeight)
         if isScrollViewActive{
             self.scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.scrollView.frame.height - KeyboardHeight)
             isScrollViewActive = false

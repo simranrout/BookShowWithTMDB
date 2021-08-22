@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct resultModel : Decodable {
+struct resultModel : Codable {
     
     var results : [MovieModel]?
     
@@ -24,3 +24,4 @@ struct resultModel : Decodable {
     
     
 }
+ 

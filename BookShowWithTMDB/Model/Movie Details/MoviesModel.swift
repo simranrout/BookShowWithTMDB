@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct MovieModel : Decodable{
+struct MovieModel : Codable{
      
     var original_title = ""
     var overview = ""
@@ -14,6 +14,8 @@ struct MovieModel : Decodable{
     var vote_average = 0.0
     var release_date = ""
     var original_language = ""
+    var id : Int
+    var backdrop_path : String?
     
     
     enum CodingKeys : String , CodingKey {
@@ -23,6 +25,8 @@ struct MovieModel : Decodable{
         case poster_path
         case release_date
         case original_language
+        case id
+        case backdrop_path
     }
     
     
@@ -37,7 +41,18 @@ struct MovieModel : Decodable{
         release_date = try container.decode(String.self, forKey: .release_date)
         original_language = try container.decode(String.self, forKey: .original_language)
         poster_path  = try container.decode(String.self, forKey: .poster_path)
-         
+        id = try container.decode(Int.self, forKey: .id)
+        if var poster_path =  try container.decodeIfPresent(String.self, forKey: .poster_path) {
+            self.poster_path  = poster_path
+        }else {
+            self.poster_path = nil
+        }
+               if var backdrop_path =  try container.decodeIfPresent(String.self, forKey: .backdrop_path) {
+                   self.backdrop_path  = backdrop_path
+               }else {
+                   self.backdrop_path = nil
+               }
+       
  
     }
 }

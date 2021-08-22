@@ -22,12 +22,35 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var ProgressBar: UIProgressView!
     var fetchImageInstance = FetchingImage()
     var updateMovieDetails : MovieModel?
+    
     var averagevote = 0
     
     // MARK :- Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         BookNowButton.layer.cornerRadius = 12
+        endCreditsFetch()
+    }
+    func endCreditsFetch(){
+        //check whether Movie Model is empty or not
+        guard updateMovieDetails != nil else {
+            return
+        }
+        var MovieId =    String(updateMovieDetails!.id)
+            let url = URL(string: Constants.base_URL+MovieId+Constants.credit_URL)
+            URLSession.shared.getData(url: url, structureType: CreditsDetails.self) { [weak self] result in
+                switch result{
+                case .success(let CreditsDetails):
+                    
+                    print("cast",CreditsDetails.cast)
+                    print("crew",CreditsDetails.crew)
+                    
+                   
+                case .failure(let error):
+                    print(error)
+                
+                }
+            }
     }
     
     override func viewWillAppear(_ animated: Bool) {

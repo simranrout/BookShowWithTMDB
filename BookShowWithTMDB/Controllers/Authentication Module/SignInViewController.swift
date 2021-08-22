@@ -27,19 +27,15 @@ class SignInViewController: UIViewController {
         Password.layer.cornerRadius = 22
         SignInButton.layer.cornerRadius = 12
         
+        addKeyboardTapGesture()
         //call function when keyboard appears or  disappears
-        let tap = UITapGestureRecognizer(target: self, action: #selector(tapToHideKeyboard)) // calling imageViewTapped function
-        view.addGestureRecognizer(tap)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardAppearedOnScreen), name: UIResponder.keyboardDidShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardDisappredOnScreen), name: UIResponder.keyboardDidHideNotification, object: nil)
         
         // Do any additional setup after loading the view.
     }
     
-    @objc func tapToHideKeyboard(){
-       
-        view.endEditing(true)
-    }
+   
     //Action for Sign Up button (new user)
     @IBAction func SignUpButtonTapped(_ sender: Any) {
         changViewController(storyBoardID: "SignUpVC")

@@ -24,4 +24,16 @@ extension UIViewController{
                 , completion: nil)
     }
     
+    func addKeyboardTapGesture(){
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapToHideKeyboard)) // calling imageViewTapped function
+        view.addGestureRecognizer(tap)
+        
+     
+    }
+    @objc func tapToHideKeyboard(){
+        view.endEditing(true)
+    }
+   
+   
 }
+
