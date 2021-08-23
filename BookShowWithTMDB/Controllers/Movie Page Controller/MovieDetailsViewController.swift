@@ -22,36 +22,36 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var ProgressBar: UIProgressView!
     var fetchImageInstance = FetchingImage()
     var updateMovieDetails : MovieModel?
-    
+    var CreditDetailsGlobal : CreditsDetails?
     var averagevote = 0
     
     // MARK :- Methods
     override func viewDidLoad() {
+        endCreditsFetch()
         super.viewDidLoad()
         BookNowButton.layer.cornerRadius = 12
-        endCreditsFetch()
+         
     }
-    func endCreditsFetch(){
+    private func endCreditsFetch(){
         //check whether Movie Model is empty or not
         guard updateMovieDetails != nil else {
             return
         }
-        var MovieId =    String(updateMovieDetails!.id)
+        let MovieId = String(updateMovieDetails!.id)
             let url = URL(string: Constants.base_URL+MovieId+Constants.credit_URL)
             URLSession.shared.getData(url: url, structureType: CreditsDetails.self) { [weak self] result in
                 switch result{
                 case .success(let CreditsDetails):
+                    self?.CreditDetailsGlobal = CreditsDetails
                     
-                    print("cast",CreditsDetails.cast)
-                    print("crew",CreditsDetails.crew)
-                    
-                   
+                    self?.sendDataToChildVC()
                 case .failure(let error):
                     print(error)
                 
                 }
             }
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
        
@@ -80,8 +80,27 @@ class MovieDetailsViewController: UIViewController {
         updateApprovalAndProgressBar()
     
     }
+    private func sendDataToChildVC(){
+        DispatchQueue.main.async {
+            for child in self.children{
+                
+                if let childVC = child as? CreditTableViewController{
+                    
+                    
+                    childVC.updateCreditData((self.CreditDetailsGlobal)!)
+                
+                
+                }
+               
+            }
+        }
+    }
     
-    func updateImageView(){
+    
+       
+ 
+    
+  private func updateImageView(){
         guard updateMovieDetails?.poster_path != nil else {
             MoviePosterImageView.image = UIImage(systemName: "person.circle")
             return
@@ -94,7 +113,7 @@ class MovieDetailsViewController: UIViewController {
     }
     
     
-    func updateApprovalAndProgressBar(){
+   private func updateApprovalAndProgressBar(){
         averagevote = Int(updateMovieDetails!.vote_average * 10)
         ApprovalTextLabel.text = "Approval - \(averagevote)%"
         ProgressBar.progress = Float(averagevote)/100.0

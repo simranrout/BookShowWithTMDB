@@ -15,7 +15,6 @@ class SignUpViewController: UIViewController , UIImagePickerControllerDelegate ,
     @IBOutlet weak var PasswordField: UITextField!
     @IBOutlet weak var ProfileImageView: UIImageView!
     @IBOutlet weak var SignUpButton: UIButton!
-    @IBOutlet weak var label: UILabel!
     var KeyboardHeight:CGFloat = 0.0
     var isScrollViewActive = false
     

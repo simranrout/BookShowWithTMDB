@@ -42,12 +42,12 @@ struct MovieModel : Codable{
         original_language = try container.decode(String.self, forKey: .original_language)
         poster_path  = try container.decode(String.self, forKey: .poster_path)
         id = try container.decode(Int.self, forKey: .id)
-        if var poster_path =  try container.decodeIfPresent(String.self, forKey: .poster_path) {
+        if let poster_path =  try container.decodeIfPresent(String.self, forKey: .poster_path) {
             self.poster_path  = poster_path
         }else {
             self.poster_path = nil
         }
-               if var backdrop_path =  try container.decodeIfPresent(String.self, forKey: .backdrop_path) {
+        if let backdrop_path =  try container.decodeIfPresent(String.self, forKey: .backdrop_path) {
                    self.backdrop_path  = backdrop_path
                }else {
                    self.backdrop_path = nil

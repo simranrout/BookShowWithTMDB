@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="CreditCellCollectionView" reuseIdentifier="CreditCellCollectionView" id="gTV-IL-0wX" customClass="CreditCellCollectionView" customModule="BookShowWithTMDB" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundImage" translatesAutoresizingMaskIntoConstraints="NO" id="xbr-g9-uxI">
+                        <rect key="frame" x="62.5" y="10" width="125" height="125"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="xbr-g9-uxI" secondAttribute="height" multiplier="1:1" id="Sf4-YL-GRC"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="htF-Sa-XVc">
+                        <rect key="frame" x="10" y="150" width="230" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gender" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FvM-kK-100">
+                        <rect key="frame" x="10" y="178" width="230" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Occupation" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aGc-3n-DSL">
+                        <rect key="frame" x="10" y="206" width="230" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="htF-Sa-XVc" secondAttribute="trailing" constant="10" id="0a8-bv-mTT"/>
+                <constraint firstItem="FvM-kK-100" firstAttribute="leading" secondItem="htF-Sa-XVc" secondAttribute="leading" id="9Qn-9o-FeH"/>
+                <constraint firstItem="htF-Sa-XVc" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="BIs-1L-d6s"/>
+                <constraint firstItem="aGc-3n-DSL" firstAttribute="top" secondItem="FvM-kK-100" secondAttribute="bottom" constant="10" id="ILz-zb-bQm"/>
+                <constraint firstItem="xbr-g9-uxI" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" multiplier="0.5" id="O18-jR-ZEA"/>
+                <constraint firstItem="htF-Sa-XVc" firstAttribute="top" secondItem="xbr-g9-uxI" secondAttribute="bottom" constant="15" id="Rh7-4z-NHb"/>
+                <constraint firstItem="aGc-3n-DSL" firstAttribute="trailing" secondItem="FvM-kK-100" secondAttribute="trailing" id="fUY-UM-E6g"/>
+                <constraint firstItem="FvM-kK-100" firstAttribute="trailing" secondItem="htF-Sa-XVc" secondAttribute="trailing" id="i8G-7Y-7AQ"/>
+                <constraint firstItem="xbr-g9-uxI" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="sfg-Ey-ZDF"/>
+                <constraint firstItem="aGc-3n-DSL" firstAttribute="leading" secondItem="FvM-kK-100" secondAttribute="leading" id="sfl-px-bwK"/>
+                <constraint firstItem="xbr-g9-uxI" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="whp-9d-4TY"/>
+                <constraint firstItem="FvM-kK-100" firstAttribute="top" secondItem="htF-Sa-XVc" secondAttribute="bottom" constant="10" id="xbG-X7-7lg"/>
+            </constraints>
+            <size key="customSize" width="297" height="276"/>
+            <connections>
+                <outlet property="CastImageView" destination="xbr-g9-uxI" id="me2-E6-Qcp"/>
+                <outlet property="GenderTextLabel" destination="FvM-kK-100" id="WPG-db-8RM"/>
+                <outlet property="NameTextLabel" destination="htF-Sa-XVc" id="kKd-nN-37H"/>
+                <outlet property="OccupationTextLabel" destination="aGc-3n-DSL" id="DC3-oE-kXn"/>
+            </connections>
+            <point key="canvasLocation" x="72.463768115942031" y="43.526785714285715"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="BackgroundImage" width="1366" height="768"/>
+    </resources>
+</document>

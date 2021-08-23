@@ -20,6 +20,12 @@
 		F539A1CB26C508600062D666 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F539A1CA26C508600062D666 /* SignUpViewController.swift */; };
 		F539A1CD26C5119D0062D666 /* MovieTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F539A1CC26C5119D0062D666 /* MovieTabViewController.swift */; };
 		F539A1CF26C572060062D666 /* ProfileTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F539A1CE26C572060062D666 /* ProfileTabViewController.swift */; };
+		F56C032B26D375B8006E63CB /* CastDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56C032A26D375B8006E63CB /* CastDetailsViewController.swift */; };
+		F56C033526D37956006E63CB /* CreditCellCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56C033326D37956006E63CB /* CreditCellCollectionView.swift */; };
+		F56C033626D37956006E63CB /* CreditCellCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F56C033426D37956006E63CB /* CreditCellCollectionView.xib */; };
+		F56C033E26D3B474006E63CB /* CreditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56C033D26D3B474006E63CB /* CreditTableViewController.swift */; };
+		F56C034126D3B5F2006E63CB /* CreditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56C033F26D3B5F2006E63CB /* CreditTableViewCell.swift */; };
+		F56C034226D3B5F2006E63CB /* CreditTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F56C034026D3B5F2006E63CB /* CreditTableViewCell.xib */; };
 		F57F65A426CA9ED4007F981E /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57F65A326CA9ED4007F981E /* MovieTableViewCell.swift */; };
 		F59364B426CB9D7B00F646C0 /* FetchingImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59364B326CB9D7B00F646C0 /* FetchingImage.swift */; };
 		F59AF71326CFEF8300D58440 /* PdfGenerateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59AF71226CFEF8300D58440 /* PdfGenerateViewController.swift */; };
@@ -48,6 +54,12 @@
 		F539A1CA26C508600062D666 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		F539A1CC26C5119D0062D666 /* MovieTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTabViewController.swift; sourceTree = "<group>"; };
 		F539A1CE26C572060062D666 /* ProfileTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabViewController.swift; sourceTree = "<group>"; };
+		F56C032A26D375B8006E63CB /* CastDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastDetailsViewController.swift; sourceTree = "<group>"; };
+		F56C033326D37956006E63CB /* CreditCellCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCellCollectionView.swift; sourceTree = "<group>"; };
+		F56C033426D37956006E63CB /* CreditCellCollectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreditCellCollectionView.xib; sourceTree = "<group>"; };
+		F56C033D26D3B474006E63CB /* CreditTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditTableViewController.swift; sourceTree = "<group>"; };
+		F56C033F26D3B5F2006E63CB /* CreditTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditTableViewCell.swift; sourceTree = "<group>"; };
+		F56C034026D3B5F2006E63CB /* CreditTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreditTableViewCell.xib; sourceTree = "<group>"; };
 		F57F65A326CA9ED4007F981E /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 		F59364B326CB9D7B00F646C0 /* FetchingImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchingImage.swift; sourceTree = "<group>"; };
 		F59AF71226CFEF8300D58440 /* PdfGenerateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PdfGenerateViewController.swift; sourceTree = "<group>"; };
@@ -196,6 +208,7 @@
 		F539A1C526C4E34A0062D666 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F56C032C26D37865006E63CB /* Credit Container View */,
 				F5DD200226CF929700166262 /* Movie Page Views */,
 				F539A1B426C4E2F30062D666 /* Main.storyboard */,
 				F539A1B926C4E2F40062D666 /* LaunchScreen.storyboard */,
@@ -223,6 +236,25 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
+		F56C032C26D37865006E63CB /* Credit Container View */ = {
+			isa = PBXGroup;
+			children = (
+				F56C033226D3791E006E63CB /* Cast Cell */,
+				F56C033F26D3B5F2006E63CB /* CreditTableViewCell.swift */,
+				F56C034026D3B5F2006E63CB /* CreditTableViewCell.xib */,
+			);
+			path = "Credit Container View";
+			sourceTree = "<group>";
+		};
+		F56C033226D3791E006E63CB /* Cast Cell */ = {
+			isa = PBXGroup;
+			children = (
+				F56C033326D37956006E63CB /* CreditCellCollectionView.swift */,
+				F56C033426D37956006E63CB /* CreditCellCollectionView.xib */,
+			);
+			path = "Cast Cell";
+			sourceTree = "<group>";
+		};
 		F59364B026CB802A00F646C0 /* Authentication Module */ = {
 			isa = PBXGroup;
 			children = (
@@ -237,6 +269,8 @@
 			children = (
 				F539A1CC26C5119D0062D666 /* MovieTabViewController.swift */,
 				F5FE4A5E26CE467E00A411BD /* MovieDetailsViewController.swift */,
+				F56C033D26D3B474006E63CB /* CreditTableViewController.swift */,
+				F56C032A26D375B8006E63CB /* CastDetailsViewController.swift */,
 			);
 			path = "Movie Page Controller";
 			sourceTree = "<group>";
@@ -331,9 +365,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F56C033626D37956006E63CB /* CreditCellCollectionView.xib in Resources */,
 				F539A1BB26C4E2F40062D666 /* LaunchScreen.storyboard in Resources */,
 				F539A1C926C4EB490062D666 /* GoogleService-Info.plist in Resources */,
 				F539A1B826C4E2F40062D666 /* Assets.xcassets in Resources */,
+				F56C034226D3B5F2006E63CB /* CreditTableViewCell.xib in Resources */,
 				F539A1B626C4E2F30062D666 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -391,18 +427,22 @@
 				F510131126D0006D00B41DD5 /* CreditsDetails.swift in Sources */,
 				F510130F26D0004200B41DD5 /* MovieMemberDetails.swift in Sources */,
 				F539A1B326C4E2F30062D666 /* SignInViewController.swift in Sources */,
+				F56C033526D37956006E63CB /* CreditCellCollectionView.swift in Sources */,
+				F56C034126D3B5F2006E63CB /* CreditTableViewCell.swift in Sources */,
 				F57F65A426CA9ED4007F981E /* MovieTableViewCell.swift in Sources */,
 				F539A1AF26C4E2F30062D666 /* AppDelegate.swift in Sources */,
 				F5D271E326C8093E00ACD107 /* extension.swift in Sources */,
 				F59364B426CB9D7B00F646C0 /* FetchingImage.swift in Sources */,
 				F539A1CF26C572060062D666 /* ProfileTabViewController.swift in Sources */,
 				F539A1CB26C508600062D666 /* SignUpViewController.swift in Sources */,
+				F56C032B26D375B8006E63CB /* CastDetailsViewController.swift in Sources */,
 				F539A1B126C4E2F30062D666 /* SceneDelegate.swift in Sources */,
 				F5FE4A5F26CE467E00A411BD /* MovieDetailsViewController.swift in Sources */,
 				F5D271E526C80D1D00ACD107 /* resultModel.swift in Sources */,
 				F5D271DD26C7923800ACD107 /* APICall.swift in Sources */,
 				F59AF71326CFEF8300D58440 /* PdfGenerateViewController.swift in Sources */,
 				F539A1CD26C5119D0062D666 /* MovieTabViewController.swift in Sources */,
+				F56C033E26D3B474006E63CB /* CreditTableViewController.swift in Sources */,
 				F5D271E126C7929500ACD107 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

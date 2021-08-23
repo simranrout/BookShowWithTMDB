@@ -32,7 +32,7 @@ class MovieTableViewCell: UITableViewCell {
     }
     
     func displayingDataOnCell(_ MovieDetailsLocal : MovieModel){
-    // MoviePosterImageView = UIImage(named: "")
+        
         self.MovieDetailsGlobal = MovieDetailsLocal
         guard self.MovieDetailsGlobal != nil else {
             return
@@ -49,9 +49,6 @@ class MovieTableViewCell: UITableViewCell {
             return
         }
         FetchingImageInstance.FetchImageFromURL(fetchedurl: ( Constants.thumbnailURL + ImageSize.MovieTableViewImageSize + (MovieDetailsGlobal!.poster_path)!), imageView:  MoviePosterImageView)
-        
-    
-        
     }
    
     
