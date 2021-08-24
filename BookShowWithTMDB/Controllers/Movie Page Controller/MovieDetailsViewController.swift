@@ -20,36 +20,33 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var BookNowButton: UIButton!
     @IBOutlet weak var MovieReleaseDateTextLabel: UILabel!
     @IBOutlet weak var ProgressBar: UIProgressView!
+    
     var fetchImageInstance = FetchingImage()
     var updateMovieDetails : MovieModel?
     var CreditDetailsGlobal : CreditsDetails?
+    var SimilarMoviesGlobal : [SimilarMoviesDetails]?
     var averagevote = 0
+    var similarVM = SimilarMoviesViewModel()
+    var CreditsVM = CreditsViewModel()
     
     // MARK :- Methods
     override func viewDidLoad() {
+       
         endCreditsFetch()
+        CreditsVM.delegate = self
+        similarVM.delegate = self
         super.viewDidLoad()
         BookNowButton.layer.cornerRadius = 12
-         
     }
+    
     private func endCreditsFetch(){
         //check whether Movie Model is empty or not
-        guard updateMovieDetails != nil else {
+        guard updateMovieDetails != nil && updateMovieDetails?.id != nil else {
             return
         }
         let MovieId = String(updateMovieDetails!.id)
-            let url = URL(string: Constants.base_URL+MovieId+Constants.credit_URL)
-            URLSession.shared.getData(url: url, structureType: CreditsDetails.self) { [weak self] result in
-                switch result{
-                case .success(let CreditsDetails):
-                    self?.CreditDetailsGlobal = CreditsDetails
-                    
-                    self?.sendDataToChildVC()
-                case .failure(let error):
-                    print(error)
-                
-                }
-            }
+        CreditsVM.endCreditsFetch(MovieID:MovieId)
+        similarVM.FetchData(MovieID : MovieId)
     }
     
     
@@ -68,8 +65,7 @@ class MovieDetailsViewController: UIViewController {
         
         //update Movie Poster
         updateImageView()
-       
-        
+    
         //updating the label value
         MovieDescriptionTextLabel.text = updateMovieDetails?.overview
         MovieTitleTextLabel.text   =    updateMovieDetails?.original_title
@@ -80,26 +76,26 @@ class MovieDetailsViewController: UIViewController {
         updateApprovalAndProgressBar()
     
     }
-    private func sendDataToChildVC(){
+    private func sendDataToChildVC(_ childName : String){
         DispatchQueue.main.async {
             for child in self.children{
-                
-                if let childVC = child as? CreditTableViewController{
+                 
+                if let childVC = child as? CreditTableViewController {
+                    if childName == "Credits"{
+                        childVC.updateCreditData((self.CreditDetailsGlobal)!)
+                        print("data of " , self.CreditDetailsGlobal)
+                    }
+                    else if childName == "SimilarMovies"{
+                        childVC.updateSimilarMoviesData(self.SimilarMoviesGlobal!)
+                        print("data of " , self.SimilarMoviesGlobal)
+                    }
                     
-                    
-                    childVC.updateCreditData((self.CreditDetailsGlobal)!)
-                
-                
                 }
                
             }
         }
     }
-    
-    
-       
- 
-    
+
   private func updateImageView(){
         guard updateMovieDetails?.poster_path != nil else {
             MoviePosterImageView.image = UIImage(systemName: "person.circle")
@@ -132,6 +128,20 @@ class MovieDetailsViewController: UIViewController {
     
     @IBAction func BookNowButtonTapped(_ sender: Any) {
         print("buttonTapped")
+    }
+   
+}
+
+//MARK:-  conforms to delegate
+extension MovieDetailsViewController : CreditsFetchprotocol  , SimilarMovieFetchprotocol{
+    func fetchSimilarMovie(_ similarMovie: [SimilarMoviesDetails]) {
+        self.SimilarMoviesGlobal = similarMovie
+        sendDataToChildVC("SimilarMovies")
+    }
+    
+    func fetchCredits(_ creditDetails: CreditsDetails?) {
+        self.CreditDetailsGlobal = creditDetails
+        sendDataToChildVC("Credits")
     }
    
 }

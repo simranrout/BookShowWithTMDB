@@ -18,15 +18,21 @@ class CreditTableViewCell: UITableViewCell , UICollectionViewDelegate , UICollec
     @IBOutlet weak var collectionView: UICollectionView!
     
     var CreditModel = [MovieMemberDetails]()
+    
+    static func nib() -> UINib{
+        return UINib(nibName: CreditTableViewCell.identifier, bundle: nil)
+    }
+    
     override func awakeFromNib() {
-        
         super.awakeFromNib()
         // Initialization code
+       collectionView.showsHorizontalScrollIndicator = false
         collectionView.register(CreditCellCollectionView.nib() , forCellWithReuseIdentifier: CreditCellCollectionView.Identifier)
         collectionView.delegate = self
         collectionView.dataSource = self
         print("height of table view", frame.size.height)
     }
+    
     //MARK: - UICollectionViewDelegateFlowLayout
 
        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
@@ -38,11 +44,8 @@ class CreditTableViewCell: UITableViewCell , UICollectionViewDelegate , UICollec
 
         // Configure the view for the selected state
     }
-    static func nib() -> UINib{
-        return UINib(nibName: CreditTableViewCell.identifier, bundle: nil)
-    }
     
-    // MARK :- Collection View Functions
+    //MARK: - CollectionView Functions
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print("namee index one  ",CreditModel.count)
         return CreditModel.count
@@ -58,19 +61,13 @@ class CreditTableViewCell: UITableViewCell , UICollectionViewDelegate , UICollec
         return cell
     }
     
-     
+     //MARK: - Configure Cell
     func configure(with model : [MovieMemberDetails] , Type : String){
         self.CreditModel = model
         if CreditModel.count != 0{
-            print("namee", CreditModel)
-          self.CreditType.text = Type
+            self.CreditType.text = Type
             self.CreditModel = model
             collectionView.reloadData()
         }
-        
-       
     }
-  
-  
-    
 }

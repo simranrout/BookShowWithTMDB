@@ -16,6 +16,7 @@ struct MovieModel : Codable{
     var original_language = ""
     var id : Int
     var backdrop_path : String?
+    var genre_ids = [Int]()
     
     
     enum CodingKeys : String , CodingKey {
@@ -27,6 +28,7 @@ struct MovieModel : Codable{
         case original_language
         case id
         case backdrop_path
+        case genre_ids
     }
     
     
@@ -34,14 +36,17 @@ struct MovieModel : Codable{
     //Got the main container from the json data this consist of all the value
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
+        genre_ids = try container.decode([Int].self, forKey: .genre_ids)
         //Decode all the data
         original_title = try container.decode(String.self, forKey: .original_title)
         overview = try container.decode(String.self, forKey: .overview)
         vote_average = try container.decode(Double.self, forKey: .vote_average)
         release_date = try container.decode(String.self, forKey: .release_date)
-        original_language = try container.decode(String.self, forKey: .original_language)
+        let languagecode = try container.decode(String.self, forKey: .original_language)
+        original_language = Locale.current.localizedString(forLanguageCode: languagecode) ?? languagecode
         poster_path  = try container.decode(String.self, forKey: .poster_path)
         id = try container.decode(Int.self, forKey: .id)
+        
         if let poster_path =  try container.decodeIfPresent(String.self, forKey: .poster_path) {
             self.poster_path  = poster_path
         }else {

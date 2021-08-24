@@ -12,15 +12,13 @@ struct Constants {
     static var base_URL = "https://api.themoviedb.org/3/movie/"
     static var thumbnailURL = "https://image.tmdb.org/t/p/"
     static var MovieDetails_URL = "\(Request)?api_key=\(API_Key)&page=1"
-    static var MoviePrototypeCellID = "MovieTableViewCell"
     static var credit_URL = "/credits?api_key=\(API_Key)&language=en-US"
+    static var Trailer_URL = "https://www.youtube.com/watch?v="
+    static var similarMovie_URL = "/similar?api_key=\(API_Key)"
    
 }
 
 struct ImageSize{
-    
     static var MovieTableViewImageSize = "w154"
     static var MovieDetailViewImageSize = "w780"
-    
-    
 }

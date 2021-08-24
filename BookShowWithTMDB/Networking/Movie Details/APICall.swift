@@ -8,7 +8,7 @@ import UIKit
 
 extension URLSession {
     
-    //MARK :- Generic Function For API Call
+    //MARK:- Generic Function For API Call
     enum CustomError : Error {
         case invalidURL
         case invalidData

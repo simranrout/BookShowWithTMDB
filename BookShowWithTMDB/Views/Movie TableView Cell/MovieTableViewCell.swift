@@ -15,13 +15,19 @@ class MovieTableViewCell: UITableViewCell {
     @IBOutlet weak var MovieGenreTextLabel: UILabel!
     
     @IBOutlet weak var MovieReleaseDateTextLabel: UILabel!
+    
+    @IBOutlet weak var BookButton: UILabel!
+    
+    static var MoviePrototypeCellID = "MovieTableViewCell"
     let dateFormatter = DateFormatter()
     var FetchingImageInstance = FetchingImage()
     var MovieDetailsGlobal : MovieModel?
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         // Initialization code
+       
     }
    
     
@@ -37,6 +43,7 @@ class MovieTableViewCell: UITableViewCell {
         guard self.MovieDetailsGlobal != nil else {
             return
         }
+        BookButton.layer.cornerRadius = 12
         MovieTitleTextLabel.text = MovieDetailsGlobal?.original_title
         MovieGenreTextLabel.text = MovieDetailsGlobal?.original_language
         dateFormatter.dateFormat = "yyyy-mm-dd"

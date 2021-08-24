@@ -35,5 +35,7 @@ struct MovieMemberDetails : Codable{
         else {
             self.profile_path = nil
         }
+        
+        
     }
 }

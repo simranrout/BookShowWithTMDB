@@ -9,7 +9,10 @@ import UIKit
 
 class MovieTabViewController: UIViewController , UITableViewDelegate , UITableViewDataSource  {
     @IBOutlet weak var TableView: UITableView!
+    var page = 1
+    var page_dummy = 1
     var Results = [MovieModel]()
+    var MovieListVM = MoviesListViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,27 +20,12 @@ class MovieTabViewController: UIViewController , UITableViewDelegate , UITableVi
         // Making itself as a datasource and delegate of tableview
         TableView.dataSource = self
         TableView.delegate = self
-        movieDataFetch()
+        MovieListVM.delegate = self
+        
+        //Adding Loadmore cell
+        TableView.register(LoadMoreTableViewCell.nib(), forCellReuseIdentifier: LoadMoreTableViewCell.LoadMorePrototypeCellID)
+        MovieListVM.movieDataFetch()
     }
-    
-    func movieDataFetch(){
-        let url = URL(string: Constants.base_URL + Constants.MovieDetails_URL)
-        URLSession.shared.getData(url: url, structureType: resultModel.self) { [weak self] result in
-            switch result{
-            case .success(let resultModel):
-                DispatchQueue.main.async {
-                    self?.Results = resultModel.results!
-                    //refresh the tableview with new data
-                    self?.TableView.reloadData()
-                }
-               
-            case .failure(let error):
-                print(error)
-            
-            }
-        }
-    }
-    
 
     //Passing the data (Movie Model for specific row ) to Movie Details View controller through segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -50,21 +38,43 @@ class MovieTabViewController: UIViewController , UITableViewDelegate , UITableVi
         MovieDetailsVC.updateMovieDetails = updatedResult
     }
     
-    // MARK :- TableView Methods
+    //MARK:- TableView Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Results.count
+        print("current row  ", Results.count)
+        return Results.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = TableView.dequeueReusableCell(withIdentifier: Constants.MoviePrototypeCellID, for: indexPath) as! MovieTableViewCell
-       
+         
+        if indexPath.row == Results.count{
+            print("current row" , Results.count ,indexPath.row)
+            let cell = TableView.dequeueReusableCell(withIdentifier: LoadMoreTableViewCell.LoadMorePrototypeCellID, for: indexPath) as! LoadMoreTableViewCell
+            //return cell
+            if Results.count > 0 {
+                print("current row", cell.reuseIdentifier )
+                
+            }
+            
+            return cell
+        }
+        
+        let cell = TableView.dequeueReusableCell(withIdentifier: MovieTableViewCell.MoviePrototypeCellID, for: indexPath) as! MovieTableViewCell
+        print("current row",Results[0])
         cell.displayingDataOnCell(self.Results[indexPath.row])
         //return cell
         return cell
         
+      
     }
 }
 
+extension MovieTabViewController : MoviesListFetchprotocol{
 
+    func fetchMovieList(_ results: [MovieModel]) {
+        self.Results = results
+        TableView.reloadData()
+    }
+    
+}
 
  
