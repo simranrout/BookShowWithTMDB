@@ -103,7 +103,7 @@ class SignUpViewController: UIViewController , UIImagePickerControllerDelegate ,
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         picker.dismiss(animated: true, completion: nil)
         guard let profileImage = info[UIImagePickerController.InfoKey.editedImage] else{
             return
@@ -112,8 +112,8 @@ class SignUpViewController: UIViewController , UIImagePickerControllerDelegate ,
     }
     
     
-    // Mark :- add  and remove scroll view on key board appearance 
-    @objc func keyboardAppearedOnScreen(_ notification : NSNotification){
+    // MARK: - add  and remove scroll view on key board appearance
+    @objc func keyboardAppearedOnScreen(_ notification: NSNotification){
          if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             KeyboardHeight = keyboardFrame.cgRectValue.height
             if !isScrollViewActive{

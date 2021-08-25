@@ -20,6 +20,7 @@
 		F539A1CB26C508600062D666 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F539A1CA26C508600062D666 /* SignUpViewController.swift */; };
 		F539A1CD26C5119D0062D666 /* MovieTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F539A1CC26C5119D0062D666 /* MovieTabViewController.swift */; };
 		F539A1CF26C572060062D666 /* ProfileTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F539A1CE26C572060062D666 /* ProfileTabViewController.swift */; };
+		F552E4EF26D65C8B009C394B /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F552E4EE26D65C8B009C394B /* ImageCacheManager.swift */; };
 		F56C033526D37956006E63CB /* CreditCellCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56C033326D37956006E63CB /* CreditCellCollectionView.swift */; };
 		F56C033626D37956006E63CB /* CreditCellCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F56C033426D37956006E63CB /* CreditCellCollectionView.xib */; };
 		F56C033E26D3B474006E63CB /* CreditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56C033D26D3B474006E63CB /* CreditTableViewController.swift */; };
@@ -64,6 +65,7 @@
 		F539A1CA26C508600062D666 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		F539A1CC26C5119D0062D666 /* MovieTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTabViewController.swift; sourceTree = "<group>"; };
 		F539A1CE26C572060062D666 /* ProfileTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabViewController.swift; sourceTree = "<group>"; };
+		F552E4EE26D65C8B009C394B /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
 		F56C033326D37956006E63CB /* CreditCellCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCellCollectionView.swift; sourceTree = "<group>"; };
 		F56C033426D37956006E63CB /* CreditCellCollectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreditCellCollectionView.xib; sourceTree = "<group>"; };
 		F56C033D26D3B474006E63CB /* CreditTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditTableViewController.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				F59364B326CB9D7B00F646C0 /* FetchingImage.swift */,
+				F552E4EE26D65C8B009C394B /* ImageCacheManager.swift */,
 			);
 			path = "Image Details";
 			sourceTree = "<group>";
@@ -507,6 +510,7 @@
 				F539A1CF26C572060062D666 /* ProfileTabViewController.swift in Sources */,
 				F539A1CB26C508600062D666 /* SignUpViewController.swift in Sources */,
 				F56FE26026D5162C0066DFB8 /* SimilarMoviesDetails.swift in Sources */,
+				F552E4EF26D65C8B009C394B /* ImageCacheManager.swift in Sources */,
 				F56FE26426D523530066DFB8 /* SimilarMoviesViewModel.swift in Sources */,
 				F539A1B126C4E2F30062D666 /* SceneDelegate.swift in Sources */,
 				F5FE4A5F26CE467E00A411BD /* MovieDetailsViewController.swift in Sources */,

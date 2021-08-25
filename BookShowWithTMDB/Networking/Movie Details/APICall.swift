@@ -14,7 +14,7 @@ extension URLSession {
         case invalidData
     }
     
-    func getData<T : Codable>(url: URL? , structureType: T.Type , completion: @escaping (Result<T, Error>)  -> Void){
+    func getData<T: Codable>(url: URL? , structureType: T.Type , completion: @escaping (Result<T, Error>)  -> Void){
         
         guard let url = url else {
             completion(.failure(CustomError.invalidURL))

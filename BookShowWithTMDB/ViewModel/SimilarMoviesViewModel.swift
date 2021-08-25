@@ -7,31 +7,33 @@
 
 import Foundation
 
+//MARK: - Protocol For Passing Similar Movies Data
 protocol SimilarMovieFetchprotocol  {
-    func fetchSimilarMovie(_ similarMovie : [SimilarMoviesDetails] )
+    func fetchSimilarMovie(_ similarMovie: [SimilarMoviesDetails] )
 }
 
+//MARK: - Fetching Similar Movies
 class SimilarMoviesViewModel {
     var similarMoviesData = [SimilarMoviesDetails]()
-    var delegate : SimilarMovieFetchprotocol?
+    var delegate: SimilarMovieFetchprotocol?
     
-    func FetchData(MovieID : String){
-                let url = URL(string: Constants.base_URL+MovieID+Constants.similarMovie_URL)
-                URLSession.shared.getData(url: url, structureType: SimilarMoviesResponse.self) { [weak self] result in
-                    switch result{
-                    case .success( let credit):
-                        DispatchQueue.main.async {
-                            self?.similarMoviesData = credit.results!
-                            self?.delegate!.fetchSimilarMovie(self!.similarMoviesData)
-                        
-                            
-                        }
-                    case .failure(let error):
-                        print(error)
-                    }
+    func FetchData(MovieID: String){
+        let url = URL(string: Constants.base_URL+MovieID+Constants.similarMovie_URL)
+        URLSession.shared.getData(url: url, structureType: SimilarMoviesResponse.self)
+        { [weak self] result in
+            
+            switch result{
+            case .success( let credit):
+                DispatchQueue.main.async {
+                    self?.similarMoviesData = credit.results!
+                    self?.delegate!.fetchSimilarMovie(self!.similarMoviesData)
+                    
                     
                 }
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
-    
 }
 

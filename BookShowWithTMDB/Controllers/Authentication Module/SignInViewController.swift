@@ -52,7 +52,7 @@ class SignInViewController: UIViewController {
    
         
     }
-    @objc func keyboardAppearedOnScreen(_ notification : NSNotification){
+    @objc func keyboardAppearedOnScreen(_ notification: NSNotification){
          if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             KeyboardHeight = keyboardFrame.cgRectValue.height
             if !isScrollViewActive{

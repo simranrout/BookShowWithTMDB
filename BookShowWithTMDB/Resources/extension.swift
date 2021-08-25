@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 extension UIViewController{
-    func changViewController(storyBoardID : String)  {
+    func changViewController(storyBoardID: String)  {
        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let currentVC = storyboard.instantiateViewController(withIdentifier: storyBoardID)
@@ -17,7 +17,7 @@ extension UIViewController{
         present(currentVC, animated: true, completion: nil)
     }
     
-    func singleMessageAlertView(titleText : String , message : String , preferredStyle : UIAlertController.Style ){
+    func singleMessageAlertView(titleText: String , message: String , preferredStyle: UIAlertController.Style ){
         let alert = UIAlertController(title: titleText, message: message , preferredStyle: preferredStyle)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(alert, animated: true

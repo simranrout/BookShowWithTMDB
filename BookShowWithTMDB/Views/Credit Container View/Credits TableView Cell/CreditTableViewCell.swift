@@ -62,11 +62,11 @@ class CreditTableViewCell: UITableViewCell , UICollectionViewDelegate , UICollec
     }
     
      //MARK: - Configure Cell
-    func configure(with model : [MovieMemberDetails] , Type : String){
-        self.CreditModel = model
+    func configure(with movieMemberModelList: [MovieMemberDetails] , typeOfMember: String){
+        self.CreditModel = movieMemberModelList
         if CreditModel.count != 0{
-            self.CreditType.text = Type
-            self.CreditModel = model
+            self.CreditType.text = typeOfMember
+            self.CreditModel = movieMemberModelList
             collectionView.reloadData()
         }
     }

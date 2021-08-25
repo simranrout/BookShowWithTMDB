@@ -24,7 +24,7 @@ class MovieTabViewController: UIViewController , UITableViewDelegate , UITableVi
         
         //Adding Loadmore cell
         TableView.register(LoadMoreTableViewCell.nib(), forCellReuseIdentifier: LoadMoreTableViewCell.LoadMorePrototypeCellID)
-        MovieListVM.movieDataFetch()
+        MovieListVM.movieDataFetch(page)
     }
 
     //Passing the data (Movie Model for specific row ) to Movie Details View controller through segue
@@ -49,9 +49,9 @@ class MovieTabViewController: UIViewController , UITableViewDelegate , UITableVi
             let cell = TableView.dequeueReusableCell(withIdentifier: LoadMoreTableViewCell.LoadMorePrototypeCellID, for: indexPath) as! LoadMoreTableViewCell
             //return cell
             if Results.count > 0 {
-                
+                print("call in")
+                loadMore()
             }
-            
             return cell
         }
         
@@ -62,12 +62,16 @@ class MovieTabViewController: UIViewController , UITableViewDelegate , UITableVi
         
       
     }
+    func loadMore(){
+        page += 1
+        MovieListVM.movieDataFetch(page)
+    }
 }
 
-extension MovieTabViewController : MoviesListFetchprotocol{
+extension MovieTabViewController: MoviesListFetchprotocol {
 
     func fetchMovieList(_ results: [MovieModel]) {
-        self.Results = results
+        self.Results.append(contentsOf: results)
         TableView.reloadData()
     }
     

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CreditsDetails : Codable {
-    var cast : [MovieMemberDetails]?
-    var crew : [MovieMemberDetails]?
+struct CreditsDetails: Codable {
+    var cast: [MovieMemberDetails]?
+    var crew: [MovieMemberDetails]?
 }

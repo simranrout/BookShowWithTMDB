@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class CreditTableViewController : UIViewController  , UITableViewDelegate , UITableViewDataSource{
+class CreditTableViewController: UIViewController  , UITableViewDelegate , UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -26,14 +26,14 @@ class CreditTableViewController : UIViewController  , UITableViewDelegate , UITa
         tableView.dataSource = self
     }
     
-    func updateCreditData(_ CreditData : CreditsDetails){
+    func updateCreditData(_ CreditData: CreditsDetails) {
         self.CastDetails = CreditData.cast!
         self.CrewDetails = CreditData.crew!
         tableView.reloadData()
         
     }
     
-    func updateSimilarMoviesData (_  similarData : [SimilarMoviesDetails] ){
+    func updateSimilarMoviesData (_  similarData: [SimilarMoviesDetails] ){
         self.SimilarMovies = similarData
         tableView.reloadData()
     }
@@ -47,11 +47,11 @@ class CreditTableViewController : UIViewController  , UITableViewDelegate , UITa
             if CrewDetails.count > 0 {
                     if indexPath.row == 1{
                         print("namee index one" , indexPath.row , CrewDetails.count)
-                        cell.configure(with: CrewDetails , Type: "Crew")
+                        cell.configure(with: CrewDetails , typeOfMember: "Crew")
                     }
                     else if indexPath.row == 0 {
                         print("namee index " , indexPath.row , CastDetails.count)
-                        cell.configure(with: CastDetails , Type: "Cast")
+                        cell.configure(with: CastDetails , typeOfMember: "Cast")
                     }
             }
             return cell

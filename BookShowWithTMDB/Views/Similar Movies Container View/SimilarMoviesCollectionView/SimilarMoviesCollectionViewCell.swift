@@ -28,7 +28,7 @@ class SimilarMoviesCollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
     
-    func configure(with similarMoviesModel : SimilarMoviesDetails){
+    func configure(with similarMoviesModel: SimilarMoviesDetails){
         let ImageUrl = Constants.thumbnailURL+ImageSize.MovieTableViewImageSize+similarMoviesModel.poster_path!
         SimilarMovieImageView.FetchImageFromURL(fetchedurl: ImageUrl)
         MovieTitleTextLabel.text = similarMoviesModel.original_title

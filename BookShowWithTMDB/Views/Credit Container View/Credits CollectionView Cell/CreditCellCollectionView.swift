@@ -27,27 +27,27 @@ class CreditCellCollectionView: UICollectionViewCell {
         CastImageView.contentMode = .scaleAspectFill
     }
     
-    public func configure(with model : MovieMemberDetails ){
+    public func configure(with movieMemberModel: MovieMemberDetails ){
         
-        if model.profile_path == nil{
+        if movieMemberModel.profile_path == nil{
             CastImageView.image = UIImage(systemName: "person.circle")!
         }
         else{
-            let imageUrl = Constants.thumbnailURL+ImageSize.MovieTableViewImageSize+model.profile_path!
+            let imageUrl = Constants.thumbnailURL+ImageSize.MovieTableViewImageSize+movieMemberModel.profile_path!
             CastImageView.FetchImageFromURL(fetchedurl: imageUrl)
         }
-        if model.gender == 1{
+        if movieMemberModel.gender == 1{
             self.GenderTextLabel.text = "Female"
         }
-        else if model.gender == 2{
+        else if movieMemberModel.gender == 2{
             self.GenderTextLabel.text = "Male"
         }
         else{
             self.GenderTextLabel.text = "Others"
         }
 
-      self.NameTextLabel.text = model.original_name
-     self.OccupationTextLabel.text = model.known_for_department
+      self.NameTextLabel.text = movieMemberModel.original_name
+     self.OccupationTextLabel.text = movieMemberModel.known_for_department
         
     }
 

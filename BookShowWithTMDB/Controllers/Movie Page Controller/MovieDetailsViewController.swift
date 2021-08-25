@@ -10,10 +10,10 @@ import Foundation
 import  UIKit
 class MovieDetailsViewController: UIViewController {
     
-    // MARK :- Variable Declaration
+    // MARK:- Variable Declaration
     @IBOutlet weak var BackgroundImageView: UIImageView!
     @IBOutlet weak var MoviePosterImageView: UIImageView!
-    @IBOutlet weak var MovieDescriptionTextLabel : UILabel!
+    @IBOutlet weak var MovieDescriptionTextLabel: UILabel!
     @IBOutlet weak var MovieTitleTextLabel: UILabel!
     @IBOutlet weak var MovieLanguageTextLabel: UILabel!
     @IBOutlet weak var ApprovalTextLabel: UILabel!
@@ -21,14 +21,14 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var MovieReleaseDateTextLabel: UILabel!
     @IBOutlet weak var ProgressBar: UIProgressView!
     
-    var updateMovieDetails : MovieModel?
-    var creditDetailsGlobal : CreditsDetails?
-    var similarMoviesGlobal : [SimilarMoviesDetails]?
+    var updateMovieDetails: MovieModel?
+    var creditDetailsGlobal: CreditsDetails?
+    var similarMoviesGlobal: [SimilarMoviesDetails]?
     var averageVote = 0
     var similarVM = SimilarMoviesViewModel()
     var creditsVM = CreditsViewModel()
     
-    // MARK :- Methods
+    // MARK:- Methods
     override func viewDidLoad() {
        
         endCreditsFetch()
@@ -45,7 +45,7 @@ class MovieDetailsViewController: UIViewController {
         }
         let MovieId = String(updateMovieDetails!.id)
         creditsVM.endCreditsFetch(MovieID:MovieId)
-        similarVM.FetchData(MovieID : MovieId)
+        similarVM.FetchData(MovieID: MovieId)
     }
     
     
@@ -75,7 +75,7 @@ class MovieDetailsViewController: UIViewController {
         updateApprovalAndProgressBar()
     
     }
-    private func sendDataToChildVC(_ childName : String){
+    private func sendDataToChildVC(_ childName: String){
         DispatchQueue.main.async {
             for child in self.children{
                  
@@ -132,7 +132,7 @@ class MovieDetailsViewController: UIViewController {
 }
 
 //MARK:-  conforms to delegate
-extension MovieDetailsViewController : CreditsFetchprotocol  , SimilarMovieFetchprotocol{
+extension MovieDetailsViewController: CreditsFetchprotocol  , SimilarMovieFetchprotocol {
    
     func fetchSimilarMovie(_ similarMovie: [SimilarMoviesDetails]) {
         self.similarMoviesGlobal = similarMovie

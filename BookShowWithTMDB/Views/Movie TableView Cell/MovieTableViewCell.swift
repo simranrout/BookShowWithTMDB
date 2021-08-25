@@ -21,7 +21,7 @@ class MovieTableViewCell: UITableViewCell {
     static var MoviePrototypeCellID = "MovieTableViewCell"
  
    
-    var MovieDetailsGlobal : MovieModel?
+    var movieDetailsGlobal: MovieModel?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,23 +37,23 @@ class MovieTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func displayingDataOnCell(_ MovieDetailsLocal : MovieModel){
+    func displayingDataOnCell(_ MovieDetailsLocal: MovieModel){
         
-        self.MovieDetailsGlobal = MovieDetailsLocal
-        guard self.MovieDetailsGlobal != nil else {
+        self.movieDetailsGlobal = MovieDetailsLocal
+        guard self.movieDetailsGlobal != nil else {
             return
         }
         BookButton.layer.cornerRadius = 12
-        MovieTitleTextLabel.text = MovieDetailsGlobal?.original_title
-        MovieLanguageTextLabel.text = MovieDetailsGlobal?.original_language.LanguageCodeToLanguageName()
+        MovieTitleTextLabel.text = movieDetailsGlobal?.original_title
+        MovieLanguageTextLabel.text = movieDetailsGlobal?.original_language.LanguageCodeToLanguageName()
         
     
-        MovieReleaseDateTextLabel.text  = MovieDetailsGlobal?.release_date.convertToDate()
+        MovieReleaseDateTextLabel.text  = movieDetailsGlobal?.release_date.convertToDate()
         
-        guard MovieDetailsGlobal!.poster_path != nil else {
+        guard movieDetailsGlobal!.poster_path != nil else {
             return
         }
-        var imageURL = Constants.thumbnailURL + ImageSize.MovieTableViewImageSize + (MovieDetailsGlobal!.poster_path)!
+        var imageURL = Constants.thumbnailURL + ImageSize.MovieTableViewImageSize + (movieDetailsGlobal!.poster_path)!
         MoviePosterImageView.FetchImageFromURL(fetchedurl: imageURL)
     }
    
