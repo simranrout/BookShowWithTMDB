@@ -12,15 +12,15 @@ class MovieTableViewCell: UITableViewCell {
     
     @IBOutlet weak var MovieTitleTextLabel: UILabel!
     
-    @IBOutlet weak var MovieGenreTextLabel: UILabel!
+    @IBOutlet weak var MovieLanguageTextLabel: UILabel!
     
     @IBOutlet weak var MovieReleaseDateTextLabel: UILabel!
     
     @IBOutlet weak var BookButton: UILabel!
     
     static var MoviePrototypeCellID = "MovieTableViewCell"
-    let dateFormatter = DateFormatter()
-    var FetchingImageInstance = FetchingImage()
+ 
+   
     var MovieDetailsGlobal : MovieModel?
     
     override func awakeFromNib() {
@@ -45,20 +45,20 @@ class MovieTableViewCell: UITableViewCell {
         }
         BookButton.layer.cornerRadius = 12
         MovieTitleTextLabel.text = MovieDetailsGlobal?.original_title
-        MovieGenreTextLabel.text = MovieDetailsGlobal?.original_language
-        dateFormatter.dateFormat = "yyyy-mm-dd"
-        let date = dateFormatter.date(from: MovieDetailsGlobal!.release_date)
-        dateFormatter.dateFormat = "MMM d, yyyy"
-        let resultString = dateFormatter.string(from: date!)
-        MovieReleaseDateTextLabel.text  = resultString
+        MovieLanguageTextLabel.text = MovieDetailsGlobal?.original_language.LanguageCodeToLanguageName()
+        
+    
+        MovieReleaseDateTextLabel.text  = MovieDetailsGlobal?.release_date.convertToDate()
         
         guard MovieDetailsGlobal!.poster_path != nil else {
             return
         }
-        FetchingImageInstance.FetchImageFromURL(fetchedurl: ( Constants.thumbnailURL + ImageSize.MovieTableViewImageSize + (MovieDetailsGlobal!.poster_path)!), imageView:  MoviePosterImageView)
+        var imageURL = Constants.thumbnailURL + ImageSize.MovieTableViewImageSize + (MovieDetailsGlobal!.poster_path)!
+        MoviePosterImageView.FetchImageFromURL(fetchedurl: imageURL)
     }
    
     
    
         
 }
+

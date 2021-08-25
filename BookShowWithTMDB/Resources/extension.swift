@@ -37,3 +37,18 @@ extension UIViewController{
    
 }
 
+extension String{
+    func LanguageCodeToLanguageName() -> String{
+      return  NSLocale.current.localizedString(forLanguageCode: self) ?? "N/A"
+    }
+    
+    func convertToDate() -> String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-mm-dd"
+        let date = dateFormatter.date(from: self)
+        dateFormatter.dateFormat = "MMM d, yyyy"
+        let resultString = dateFormatter.string(from: date!)
+        return resultString 
+    }
+}
+

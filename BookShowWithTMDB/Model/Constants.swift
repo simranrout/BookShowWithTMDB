@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 struct Constants {
     static let API_Key = "314b902cc56238b2a9a202c8734e5d8c"
     static var Request = "now_playing"
@@ -18,7 +19,7 @@ struct Constants {
    
 }
 
-struct ImageSize{
+struct ImageSize {
     static var MovieTableViewImageSize = "w154"
     static var MovieDetailViewImageSize = "w780"
 }

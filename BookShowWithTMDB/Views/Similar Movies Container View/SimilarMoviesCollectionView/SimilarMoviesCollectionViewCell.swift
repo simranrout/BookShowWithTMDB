@@ -9,13 +9,14 @@ import UIKit
 
 class SimilarMoviesCollectionViewCell: UICollectionViewCell {
 
+    //MARK: - Outlet declaration
+    
     @IBOutlet weak var SimilarMovieImageView: UIImageView!
-    
     @IBOutlet weak var MovieTitleTextLabel: UILabel!
-    
     @IBOutlet weak var LanguageTextLabel: UILabel!
-    
     @IBOutlet weak var ReleaseDate: UILabel!
+    
+    //MARK: - collectionview ID and nib
     
     static var identifier = "SimilarMoviesCollectionViewCell"
     static func nib()-> UINib{
@@ -27,20 +28,11 @@ class SimilarMoviesCollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
     
-    func configure(with Model : SimilarMoviesDetails){
-        guard Model != nil else {
-            return
-        }
-
-        let fetchImage = FetchingImage()
-        fetchImage.FetchImageFromURL(fetchedurl: Constants.thumbnailURL+ImageSize.MovieTableViewImageSize+Model.poster_path!, imageView: SimilarMovieImageView)
-        MovieTitleTextLabel.text = Model.original_title
-        LanguageTextLabel.text = Model.original_language
-
-
-
-        }
-    
-     
-
+    func configure(with similarMoviesModel : SimilarMoviesDetails){
+        let ImageUrl = Constants.thumbnailURL+ImageSize.MovieTableViewImageSize+similarMoviesModel.poster_path!
+        SimilarMovieImageView.FetchImageFromURL(fetchedurl: ImageUrl)
+        MovieTitleTextLabel.text = similarMoviesModel.original_title
+        LanguageTextLabel.text = similarMoviesModel.original_language.LanguageCodeToLanguageName()
+        ReleaseDate.text = similarMoviesModel.release_date.convertToDate()
+    }
 }

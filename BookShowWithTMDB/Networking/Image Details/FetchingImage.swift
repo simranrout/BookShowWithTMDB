@@ -6,10 +6,11 @@
 //
 
 import Foundation
- import UIKit
-class FetchingImage {
+import UIKit
+
+extension UIImageView{
     
-    public func FetchImageFromURL(fetchedurl : String , imageView : UIImageView){
+    func FetchImageFromURL(fetchedurl : String){
         let url = URL(string: fetchedurl )
         guard url != nil else {
             return
@@ -21,18 +22,16 @@ class FetchingImage {
                 let PosterImage =  UIImage(data: Data!)
                 DispatchQueue.main.async {
                     guard PosterImage != nil else {
-                        imageView.image = UIImage(systemName: "list.and.film")
+                        self.image = UIImage(systemName: "person.circle")
                         return
                     }
-                    imageView.image = PosterImage
+                    self.image = PosterImage
                 }
             }
             else{
                 DispatchQueue.main.async {
-                    imageView.image = UIImage(systemName: "list.and.film")
+                    self.image = UIImage(systemName: "person.circle")
                 }
-               
-               
             }
         }
         dataTask.resume()

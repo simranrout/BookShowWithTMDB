@@ -9,11 +9,13 @@ import UIKit
 extension URLSession {
     
     //MARK:- Generic Function For API Call
-    enum CustomError : Error {
+    enum CustomError: Error {
         case invalidURL
         case invalidData
     }
-    func getData<T : Codable>(url : URL? , structureType : T.Type , completion : @escaping (Result<T, Error>)  -> Void){
+    
+    func getData<T : Codable>(url: URL? , structureType: T.Type , completion: @escaping (Result<T, Error>)  -> Void){
+        
         guard let url = url else {
             completion(.failure(CustomError.invalidURL))
             return
@@ -40,5 +42,5 @@ extension URLSession {
     
         }
         task.resume()
-}
+    }
 }

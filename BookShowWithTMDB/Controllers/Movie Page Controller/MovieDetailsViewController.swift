@@ -21,19 +21,18 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var MovieReleaseDateTextLabel: UILabel!
     @IBOutlet weak var ProgressBar: UIProgressView!
     
-    var fetchImageInstance = FetchingImage()
     var updateMovieDetails : MovieModel?
-    var CreditDetailsGlobal : CreditsDetails?
-    var SimilarMoviesGlobal : [SimilarMoviesDetails]?
-    var averagevote = 0
+    var creditDetailsGlobal : CreditsDetails?
+    var similarMoviesGlobal : [SimilarMoviesDetails]?
+    var averageVote = 0
     var similarVM = SimilarMoviesViewModel()
-    var CreditsVM = CreditsViewModel()
+    var creditsVM = CreditsViewModel()
     
     // MARK :- Methods
     override func viewDidLoad() {
        
         endCreditsFetch()
-        CreditsVM.delegate = self
+        creditsVM.delegate = self
         similarVM.delegate = self
         super.viewDidLoad()
         BookNowButton.layer.cornerRadius = 12
@@ -45,7 +44,7 @@ class MovieDetailsViewController: UIViewController {
             return
         }
         let MovieId = String(updateMovieDetails!.id)
-        CreditsVM.endCreditsFetch(MovieID:MovieId)
+        creditsVM.endCreditsFetch(MovieID:MovieId)
         similarVM.FetchData(MovieID : MovieId)
     }
     
@@ -69,7 +68,7 @@ class MovieDetailsViewController: UIViewController {
         //updating the label value
         MovieDescriptionTextLabel.text = updateMovieDetails?.overview
         MovieTitleTextLabel.text   =    updateMovieDetails?.original_title
-        MovieLanguageTextLabel.text = updateMovieDetails?.original_language
+        MovieLanguageTextLabel.text = updateMovieDetails?.original_language.LanguageCodeToLanguageName()
         MovieReleaseDateTextLabel.text = updateMovieDetails?.release_date
      
         //updating Approval percentage and progress bar value
@@ -82,12 +81,10 @@ class MovieDetailsViewController: UIViewController {
                  
                 if let childVC = child as? CreditTableViewController {
                     if childName == "Credits"{
-                        childVC.updateCreditData((self.CreditDetailsGlobal)!)
-                        print("data of " , self.CreditDetailsGlobal)
+                        childVC.updateCreditData((self.creditDetailsGlobal)!)
                     }
                     else if childName == "SimilarMovies"{
-                        childVC.updateSimilarMoviesData(self.SimilarMoviesGlobal!)
-                        print("data of " , self.SimilarMoviesGlobal)
+                        childVC.updateSimilarMoviesData(self.similarMoviesGlobal!)
                     }
                     
                 }
@@ -97,33 +94,35 @@ class MovieDetailsViewController: UIViewController {
     }
 
   private func updateImageView(){
+        
         guard updateMovieDetails?.poster_path != nil else {
             MoviePosterImageView.image = UIImage(systemName: "person.circle")
             return
         }
-        fetchImageInstance.FetchImageFromURL(fetchedurl: ( Constants.thumbnailURL + ImageSize.MovieDetailViewImageSize + (updateMovieDetails?.poster_path)!), imageView: MoviePosterImageView)
-        
-        
-        fetchImageInstance.FetchImageFromURL(fetchedurl: ( Constants.thumbnailURL + ImageSize.MovieDetailViewImageSize + (updateMovieDetails?.poster_path)!), imageView: BackgroundImageView)
+        let imageUrl = Constants.thumbnailURL + ImageSize.MovieDetailViewImageSize + (updateMovieDetails?.poster_path)!
+        MoviePosterImageView.FetchImageFromURL(fetchedurl: imageUrl)
+        BackgroundImageView.FetchImageFromURL(fetchedurl: imageUrl)
       
     }
     
     
    private func updateApprovalAndProgressBar(){
-        averagevote = Int(updateMovieDetails!.vote_average * 10)
-        ApprovalTextLabel.text = "Approval - \(averagevote)%"
-        ProgressBar.progress = Float(averagevote)/100.0
+        averageVote = Int(updateMovieDetails!.vote_average * 10)
+        ApprovalTextLabel.text = "Approval - \(averageVote)%"
+        ProgressBar.progress = Float(averageVote)/100.0
     
-        if averagevote < 40 {
+        if averageVote < 40 {
             ProgressBar.tintColor = .systemRed
-           
         }
-        else if averagevote >= 40 && averagevote < 80 {
+        
+        else if averageVote >= 40 && averageVote < 80 {
             ProgressBar.tintColor = .systemOrange
         }
+        
         else {
             ProgressBar.tintColor = .systemGreen
         }
+    
     }
     
     @IBAction func BookNowButtonTapped(_ sender: Any) {
@@ -134,13 +133,14 @@ class MovieDetailsViewController: UIViewController {
 
 //MARK:-  conforms to delegate
 extension MovieDetailsViewController : CreditsFetchprotocol  , SimilarMovieFetchprotocol{
+   
     func fetchSimilarMovie(_ similarMovie: [SimilarMoviesDetails]) {
-        self.SimilarMoviesGlobal = similarMovie
+        self.similarMoviesGlobal = similarMovie
         sendDataToChildVC("SimilarMovies")
     }
     
     func fetchCredits(_ creditDetails: CreditsDetails?) {
-        self.CreditDetailsGlobal = creditDetails
+        self.creditDetailsGlobal = creditDetails
         sendDataToChildVC("Credits")
     }
    

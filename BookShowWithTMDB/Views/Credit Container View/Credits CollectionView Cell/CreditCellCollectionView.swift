@@ -9,50 +9,33 @@ import UIKit
 
 class CreditCellCollectionView: UICollectionViewCell {
 
-    
-
     @IBOutlet weak var CastImageView: UIImageView!
-    
-    
- 
     @IBOutlet weak var NameTextLabel: UILabel!
-    
     @IBOutlet weak var GenderTextLabel: UILabel!
-    
     @IBOutlet weak var OccupationTextLabel: UILabel!
+    
     static let Identifier = "CreditCellCollectionView"
-      
     static func nib()-> UINib{
         return UINib(nibName: "CreditCellCollectionView", bundle: nil)
     }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.contentView.frame.size.width =    10
-        self.contentView.frame.size.height = 10
-        print("height of collection view",self.contentView.frame.size.height)
         // Initialization code
         CastImageView.layer.masksToBounds = true
         CastImageView.layer.cornerRadius = 125/2
         CastImageView.contentMode = .scaleAspectFill
-        
-        
     }
     
-    
     public func configure(with model : MovieMemberDetails ){
-        let object = FetchingImage()
+        
         if model.profile_path == nil{
             CastImageView.image = UIImage(systemName: "person.circle")!
-            
         }
         else{
-            object.FetchImageFromURL(fetchedurl: Constants.thumbnailURL+ImageSize.MovieTableViewImageSize+model.profile_path!, imageView: CastImageView)
-            print("image url" ,Constants.thumbnailURL+ImageSize.MovieTableViewImageSize+model.profile_path!)
-            
+            let imageUrl = Constants.thumbnailURL+ImageSize.MovieTableViewImageSize+model.profile_path!
+            CastImageView.FetchImageFromURL(fetchedurl: imageUrl)
         }
-      
-       
-        
         if model.gender == 1{
             self.GenderTextLabel.text = "Female"
         }

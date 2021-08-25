@@ -23,8 +23,6 @@ class MoviesListViewModel{
                     self?.movieResults = resultModel.results!
                     self?.delegate?.fetchMovieList(self!.movieResults)
                 }
-                
-                
             case .failure(let error):
                 print(error)
             

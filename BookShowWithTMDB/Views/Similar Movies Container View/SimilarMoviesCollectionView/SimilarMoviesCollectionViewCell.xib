@@ -23,8 +23,8 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g6W-zy-ciH">
-                        <rect key="frame" x="20" y="292" width="210" height="34"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                        <rect key="frame" x="20" y="282" width="210" height="44"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -47,14 +47,14 @@
                 <constraint firstItem="061-nh-1Ix" firstAttribute="leading" secondItem="g6W-zy-ciH" secondAttribute="leading" id="5BH-mg-4S9"/>
                 <constraint firstItem="061-nh-1Ix" firstAttribute="trailing" secondItem="g6W-zy-ciH" secondAttribute="trailing" id="Ipk-CL-5yd"/>
                 <constraint firstItem="DT0-LM-O0p" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="JGp-wX-BfI"/>
-                <constraint firstItem="g6W-zy-ciH" firstAttribute="top" secondItem="DT0-LM-O0p" secondAttribute="bottom" constant="20" id="Jn3-wK-INV"/>
-                <constraint firstItem="cmX-dx-zW5" firstAttribute="top" secondItem="061-nh-1Ix" secondAttribute="bottom" constant="10" id="LLd-dF-uZ8"/>
+                <constraint firstItem="g6W-zy-ciH" firstAttribute="top" secondItem="DT0-LM-O0p" secondAttribute="bottom" constant="10" id="Jn3-wK-INV"/>
+                <constraint firstItem="cmX-dx-zW5" firstAttribute="top" secondItem="061-nh-1Ix" secondAttribute="bottom" priority="750" constant="10" id="LLd-dF-uZ8"/>
                 <constraint firstItem="cmX-dx-zW5" firstAttribute="trailing" secondItem="061-nh-1Ix" secondAttribute="trailing" id="SBE-ZE-0vu"/>
                 <constraint firstItem="g6W-zy-ciH" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="XFR-nd-r31"/>
                 <constraint firstItem="DT0-LM-O0p" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="12" id="XiJ-fI-Zyf"/>
                 <constraint firstItem="cmX-dx-zW5" firstAttribute="leading" secondItem="061-nh-1Ix" secondAttribute="leading" id="cXw-jB-7bV"/>
                 <constraint firstAttribute="trailing" secondItem="g6W-zy-ciH" secondAttribute="trailing" constant="20" id="dG4-gD-Pf4"/>
-                <constraint firstItem="061-nh-1Ix" firstAttribute="top" secondItem="g6W-zy-ciH" secondAttribute="bottom" constant="10" id="gPG-Zg-tda"/>
+                <constraint firstItem="061-nh-1Ix" firstAttribute="top" secondItem="g6W-zy-ciH" secondAttribute="bottom" priority="750" constant="10" id="gPG-Zg-tda"/>
                 <constraint firstAttribute="bottom" secondItem="cmX-dx-zW5" secondAttribute="bottom" constant="20" id="nek-4f-RoY"/>
                 <constraint firstItem="DT0-LM-O0p" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" multiplier="0.8" id="vaR-sd-gFq"/>
             </constraints>

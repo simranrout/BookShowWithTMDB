@@ -40,18 +40,15 @@ class MovieTabViewController: UIViewController , UITableViewDelegate , UITableVi
     
     //MARK:- TableView Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("current row  ", Results.count)
         return Results.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
          
         if indexPath.row == Results.count{
-            print("current row" , Results.count ,indexPath.row)
             let cell = TableView.dequeueReusableCell(withIdentifier: LoadMoreTableViewCell.LoadMorePrototypeCellID, for: indexPath) as! LoadMoreTableViewCell
             //return cell
             if Results.count > 0 {
-                print("current row", cell.reuseIdentifier )
                 
             }
             
@@ -59,7 +56,6 @@ class MovieTabViewController: UIViewController , UITableViewDelegate , UITableVi
         }
         
         let cell = TableView.dequeueReusableCell(withIdentifier: MovieTableViewCell.MoviePrototypeCellID, for: indexPath) as! MovieTableViewCell
-        print("current row",Results[0])
         cell.displayingDataOnCell(self.Results[indexPath.row])
         //return cell
         return cell
