@@ -55,7 +55,6 @@ class SignUpViewController: UIViewController , UIImagePickerControllerDelegate ,
             return
         }
         changViewController(storyBoardID: "MainViewVC")
-        print("ID and PWD" , EmailField.text , PasswordField.text , UserNameField.text)
     
     }
     

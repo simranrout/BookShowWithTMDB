@@ -30,7 +30,6 @@ class CreditTableViewCell: UITableViewCell , UICollectionViewDelegate , UICollec
         collectionView.register(CreditCellCollectionView.nib() , forCellWithReuseIdentifier: CreditCellCollectionView.Identifier)
         collectionView.delegate = self
         collectionView.dataSource = self
-        print("height of table view", frame.size.height)
     }
     
     //MARK: - UICollectionViewDelegateFlowLayout
@@ -47,16 +46,12 @@ class CreditTableViewCell: UITableViewCell , UICollectionViewDelegate , UICollec
     
     //MARK: - CollectionView Functions
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("namee index one  ",CreditModel.count)
         return CreditModel.count
         
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CreditCellCollectionView.Identifier, for: indexPath) as! CreditCellCollectionView
-        if indexPath.row == 2{
-            cell.configure(with: CreditModel[indexPath.row])
-        }
         cell.configure(with: CreditModel[indexPath.row])
         return cell
     }

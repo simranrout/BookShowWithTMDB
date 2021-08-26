@@ -8,26 +8,20 @@
 import UIKit
 
 class MovieTableViewCell: UITableViewCell {
-    @IBOutlet weak var MoviePosterImageView: UIImageView!
+    @IBOutlet weak var moviePosterImageView: UIImageView!
+    @IBOutlet weak var movieTitleTextLabel: UILabel!
+    @IBOutlet weak var movieLanguageTextLabel: UILabel!
+    @IBOutlet weak var movieReleaseDateTextLabel: UILabel!
+    @IBOutlet weak var bookButton: UILabel!
     
-    @IBOutlet weak var MovieTitleTextLabel: UILabel!
-    
-    @IBOutlet weak var MovieLanguageTextLabel: UILabel!
-    
-    @IBOutlet weak var MovieReleaseDateTextLabel: UILabel!
-    
-    @IBOutlet weak var BookButton: UILabel!
-    
-    static var MoviePrototypeCellID = "MovieTableViewCell"
- 
-   
+    static var moviePrototypeCellID = "MovieTableViewCell"
     var movieDetailsGlobal: MovieModel?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         // Initialization code
-       
+        moviePosterImageView.layer.cornerRadius = 22       
     }
    
     
@@ -43,18 +37,18 @@ class MovieTableViewCell: UITableViewCell {
         guard self.movieDetailsGlobal != nil else {
             return
         }
-        BookButton.layer.cornerRadius = 12
-        MovieTitleTextLabel.text = movieDetailsGlobal?.original_title
-        MovieLanguageTextLabel.text = movieDetailsGlobal?.original_language.LanguageCodeToLanguageName()
+       
+        movieTitleTextLabel.text = movieDetailsGlobal?.original_title
+        movieLanguageTextLabel.text = movieDetailsGlobal?.original_language.LanguageCodeToLanguageName()
         
     
-        MovieReleaseDateTextLabel.text  = movieDetailsGlobal?.release_date.convertToDate()
+        movieReleaseDateTextLabel.text  = movieDetailsGlobal?.release_date.convertToDate()
         
         guard movieDetailsGlobal!.poster_path != nil else {
             return
         }
-        var imageURL = Constants.thumbnailURL + ImageSize.MovieTableViewImageSize + (movieDetailsGlobal!.poster_path)!
-        MoviePosterImageView.FetchImageFromURL(fetchedurl: imageURL)
+        let imageURL = Constants.thumbnailURL + ImageSize.MovieTableViewImageSize + (movieDetailsGlobal!.poster_path)!
+        moviePosterImageView.FetchImageFromURL(fetchedurl: imageURL)
     }
    
     

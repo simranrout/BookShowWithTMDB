@@ -392,6 +392,7 @@
                         <outlet property="MovieReleaseDateTextLabel" destination="KDh-B4-Kzl" id="xbA-xV-4VO"/>
                         <outlet property="MovieTitleTextLabel" destination="pFt-zs-eYb" id="kaE-QP-5a9"/>
                         <outlet property="ProgressBar" destination="mao-f2-mPu" id="Hju-Nk-0QG"/>
+                        <outlet property="movieGenreTextLabel" destination="eNl-3U-QYv" id="TcT-E2-bfn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jpb-Z4-6Gh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

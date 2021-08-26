@@ -62,7 +62,6 @@ class SignInViewController: UIViewController {
                }
      }
      @objc func keyboardDisappredOnScreen(){
-         print("height No keyboard" , KeyboardHeight)
         if isScrollViewActive{
             self.SignInScrollView.contentSize = CGSize(width: self.view.frame.width, height: self.SignInScrollView.frame.height - KeyboardHeight)
             isScrollViewActive = false

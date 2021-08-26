@@ -11,15 +11,16 @@ import  UIKit
 class MovieDetailsViewController: UIViewController {
     
     // MARK:- Variable Declaration
-    @IBOutlet weak var BackgroundImageView: UIImageView!
-    @IBOutlet weak var MoviePosterImageView: UIImageView!
-    @IBOutlet weak var MovieDescriptionTextLabel: UILabel!
-    @IBOutlet weak var MovieTitleTextLabel: UILabel!
-    @IBOutlet weak var MovieLanguageTextLabel: UILabel!
-    @IBOutlet weak var ApprovalTextLabel: UILabel!
-    @IBOutlet weak var BookNowButton: UIButton!
-    @IBOutlet weak var MovieReleaseDateTextLabel: UILabel!
-    @IBOutlet weak var ProgressBar: UIProgressView!
+    @IBOutlet weak var backgroundImageView: UIImageView!
+    @IBOutlet weak var moviePosterImageView: UIImageView!
+    @IBOutlet weak var movieDescriptionTextLabel: UILabel!
+    @IBOutlet weak var movieTitleTextLabel: UILabel!
+    @IBOutlet weak var movieLanguageTextLabel: UILabel!
+    @IBOutlet weak var approvalTextLabel: UILabel!
+    @IBOutlet weak var bookNowButton: UIButton!
+    @IBOutlet weak var movieReleaseDateTextLabel: UILabel!
+    @IBOutlet weak var progressBar: UIProgressView!
+    @IBOutlet weak var movieGenreTextLabel: UILabel!
     
     var updateMovieDetails: MovieModel?
     var creditDetailsGlobal: CreditsDetails?
@@ -27,7 +28,7 @@ class MovieDetailsViewController: UIViewController {
     var averageVote = 0
     var similarVM = SimilarMoviesViewModel()
     var creditsVM = CreditsViewModel()
-    
+    var genre = GenreParsing()
     // MARK:- Methods
     override func viewDidLoad() {
        
@@ -35,7 +36,8 @@ class MovieDetailsViewController: UIViewController {
         creditsVM.delegate = self
         similarVM.delegate = self
         super.viewDidLoad()
-        BookNowButton.layer.cornerRadius = 12
+        bookNowButton.layer.cornerRadius = 12
+        genre.genreJSONParse()
     }
     
     private func endCreditsFetch(){
@@ -52,10 +54,10 @@ class MovieDetailsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
        
         //Clearing the previous from the field (if any)
-        MovieDescriptionTextLabel.text = ""
-        MovieTitleTextLabel.text = ""
-        MoviePosterImageView.image = nil
-        ApprovalTextLabel.text = ""
+        movieDescriptionTextLabel.text = ""
+        movieTitleTextLabel.text = ""
+        moviePosterImageView.image = nil
+        approvalTextLabel.text = ""
         
         //check whether Movie Model is empty or not
         guard updateMovieDetails != nil else {
@@ -66,10 +68,16 @@ class MovieDetailsViewController: UIViewController {
         updateImageView()
     
         //updating the label value
-        MovieDescriptionTextLabel.text = updateMovieDetails?.overview
-        MovieTitleTextLabel.text   =    updateMovieDetails?.original_title
-        MovieLanguageTextLabel.text = updateMovieDetails?.original_language.LanguageCodeToLanguageName()
-        MovieReleaseDateTextLabel.text = updateMovieDetails?.release_date
+        movieDescriptionTextLabel.text = updateMovieDetails?.overview
+        movieTitleTextLabel.text   =    updateMovieDetails?.original_title
+        movieLanguageTextLabel.text = updateMovieDetails?.original_language.LanguageCodeToLanguageName()
+        movieReleaseDateTextLabel.text = updateMovieDetails?.release_date.convertToDate()
+        guard updateMovieDetails?.genre_ids.count != 0 else {
+            return
+        }
+        let genreId = updateMovieDetails!.genre_ids
+        movieGenreTextLabel.text = " * " + GenreParsing.getGenresFromList(genreId)
+        
      
         //updating Approval percentage and progress bar value
         updateApprovalAndProgressBar()
@@ -78,7 +86,6 @@ class MovieDetailsViewController: UIViewController {
     private func sendDataToChildVC(_ childName: String){
         DispatchQueue.main.async {
             for child in self.children{
-                 
                 if let childVC = child as? CreditTableViewController {
                     if childName == "Credits"{
                         childVC.updateCreditData((self.creditDetailsGlobal)!)
@@ -86,9 +93,7 @@ class MovieDetailsViewController: UIViewController {
                     else if childName == "SimilarMovies"{
                         childVC.updateSimilarMoviesData(self.similarMoviesGlobal!)
                     }
-                    
                 }
-               
             }
         }
     }
@@ -96,31 +101,31 @@ class MovieDetailsViewController: UIViewController {
   private func updateImageView(){
         
         guard updateMovieDetails?.poster_path != nil else {
-            MoviePosterImageView.image = UIImage(systemName: "person.circle")
+            moviePosterImageView.image = UIImage(systemName: "person.circle")
             return
         }
         let imageUrl = Constants.thumbnailURL + ImageSize.MovieDetailViewImageSize + (updateMovieDetails?.poster_path)!
-        MoviePosterImageView.FetchImageFromURL(fetchedurl: imageUrl)
-        BackgroundImageView.FetchImageFromURL(fetchedurl: imageUrl)
+        moviePosterImageView.FetchImageFromURL(fetchedurl: imageUrl)
+        backgroundImageView.FetchImageFromURL(fetchedurl: imageUrl)
       
     }
     
     
    private func updateApprovalAndProgressBar(){
         averageVote = Int(updateMovieDetails!.vote_average * 10)
-        ApprovalTextLabel.text = "Approval - \(averageVote)%"
-        ProgressBar.progress = Float(averageVote)/100.0
+        approvalTextLabel.text = "Approval - \(averageVote)%"
+        progressBar.progress = Float(averageVote)/100.0
     
         if averageVote < 40 {
-            ProgressBar.tintColor = .systemRed
+            progressBar.tintColor = .systemRed
         }
         
         else if averageVote >= 40 && averageVote < 80 {
-            ProgressBar.tintColor = .systemOrange
+            progressBar.tintColor = .systemOrange
         }
         
         else {
-            ProgressBar.tintColor = .systemGreen
+            progressBar.tintColor = .systemGreen
         }
     
     }

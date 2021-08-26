@@ -43,12 +43,19 @@ extension String{
     }
     
     func convertToDate() -> String{
+        guard  self != nil || self != "" else {
+            return "N/A"
+        }
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-mm-dd"
         let date = dateFormatter.date(from: self)
         dateFormatter.dateFormat = "MMM d, yyyy"
+        guard date != nil else {
+            return "N/A"
+        }
         let resultString = dateFormatter.string(from: date!)
-        return resultString 
+        
+        return resultString
     }
 }
 

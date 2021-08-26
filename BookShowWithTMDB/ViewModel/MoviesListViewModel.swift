@@ -19,20 +19,20 @@ class MoviesListViewModel{
     var delegate: MoviesListFetchprotocol?
     var page1 = 0
     var maxpage = Int.max
+    var genreParse = GenreParsing()
+    
     func movieDataFetch(_ page : Int) {
+        genreParse.genreJSONParse()
         page1 += 1
-        let url = URL(string: Constants.base_URL + Constants.MovieDetails_URL+String(page))
+        let url = URL(string: Constants.base_URL + Constants.movieDetails_URL+String(page))
         URLSession.shared.getData(url: url, structureType: resultModel.self)
         {   [weak self] result in
             switch result{
             
             case .success(let resultModel):
-                
                 DispatchQueue.main.async {
-                
                     self?.movieResults = resultModel.results!
                     self?.delegate?.fetchMovieList(self!.movieResults)
-                
                 }
            
             case .failure(let error):

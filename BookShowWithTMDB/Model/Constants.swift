@@ -8,14 +8,14 @@
 import Foundation
 
 struct Constants {
-    static let API_Key = "314b902cc56238b2a9a202c8734e5d8c"
-    static var Request = "now_playing"
+    static let apiKey = "314b902cc56238b2a9a202c8734e5d8c"
+    static var request = "now_playing"
     static var base_URL = "https://api.themoviedb.org/3/movie/"
     static var thumbnailURL = "https://image.tmdb.org/t/p/"
-    static var MovieDetails_URL = "\(Request)?api_key=\(API_Key)&page="
-    static var credit_URL = "/credits?api_key=\(API_Key)&language=en-US"
-    static var Trailer_URL = "https://www.youtube.com/watch?v="
-    static var similarMovie_URL = "/similar?api_key=\(API_Key)"
+    static var movieDetails_URL = "\(request)?api_key=\(apiKey)&page="
+    static var credit_URL = "/credits?api_key=\(apiKey)&language=en-US"
+    static var trailer_URL = "https://www.youtube.com/watch?v="
+    static var similarMovie_URL = "/similar?api_key=\(apiKey)&language=en-US&page=1"
    
 }
 
