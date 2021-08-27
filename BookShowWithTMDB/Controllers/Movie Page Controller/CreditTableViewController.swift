@@ -12,7 +12,7 @@ class CreditTableViewController: UIViewController  , UITableViewDelegate , UITab
     
     @IBOutlet weak var tableView: UITableView!
     
-    var creditDetails : CreditsDetails?
+    var creditDetails: CreditsDetails?
     var similarMovies = [SimilarMoviesDetails]()
     
     override func viewDidLoad() {

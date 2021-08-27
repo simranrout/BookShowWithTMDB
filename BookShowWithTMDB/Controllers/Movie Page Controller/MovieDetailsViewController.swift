@@ -47,7 +47,7 @@ class MovieDetailsViewController: UIViewController {
         }
         let MovieId = String(updateMovieDetails!.id)
         creditsVM.endCreditsFetch(MovieID:MovieId)
-        similarVM.FetchData(MovieID: MovieId)
+        similarVM.fetchData(MovieID: MovieId)
     }
     
     
@@ -70,17 +70,22 @@ class MovieDetailsViewController: UIViewController {
         //updating the label value
         movieDescriptionTextLabel.text = updateMovieDetails?.overview
         movieTitleTextLabel.text   =    updateMovieDetails?.original_title
-        movieLanguageTextLabel.text = updateMovieDetails?.original_language.LanguageCodeToLanguageName()
+        movieLanguageTextLabel.text = updateMovieDetails?.original_language.languageCodeToLanguageName()
         movieReleaseDateTextLabel.text = updateMovieDetails?.release_date.convertToDate()
-        guard updateMovieDetails?.genre_ids.count != 0 else {
-            return
-        }
-        let genreId = updateMovieDetails!.genre_ids
-        movieGenreTextLabel.text = " * " + GenreParsing.getGenresFromList(genreId)
         
      
         //updating Approval percentage and progress bar value
         updateApprovalAndProgressBar()
+        
+        if updateMovieDetails?.genre_ids.count != 0{
+            let genreId = updateMovieDetails!.genre_ids
+            movieGenreTextLabel.text = " * " + GenreParsing.getGenresFromList(genreId)
+          
+        }
+        else {
+            movieGenreTextLabel.text = "N/A"
+        }
+       
     
     }
     private func sendDataToChildVC(_ childName: String){
@@ -105,8 +110,8 @@ class MovieDetailsViewController: UIViewController {
             return
         }
         let imageUrl = Constants.thumbnailURL + ImageSize.MovieDetailViewImageSize + (updateMovieDetails?.poster_path)!
-        moviePosterImageView.FetchImageFromURL(fetchedurl: imageUrl)
-        backgroundImageView.FetchImageFromURL(fetchedurl: imageUrl)
+        moviePosterImageView.fetchImageFromURL(fetchedurl: imageUrl)
+        backgroundImageView.fetchImageFromURL(fetchedurl: imageUrl)
       
     }
     
@@ -130,7 +135,7 @@ class MovieDetailsViewController: UIViewController {
     
     }
     
-    @IBAction func BookNowButtonTapped(_ sender: Any) {
+    @IBAction func bookNowButtonTapped(_ sender: Any) {
         print("buttonTapped")
     }
    

@@ -10,12 +10,12 @@ import UIKit
 import PDFKit
 
 class PdfGenerateViewController: UIViewController {
-    @IBOutlet weak var PayNowButton: UIButton!
+    @IBOutlet weak var payNowButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        PayNowButton.layer.cornerRadius = 12
+        payNowButton.layer.cornerRadius = 12
     }
-    @IBAction func PayNowButtonTapped(_ sender: Any) {
+    @IBAction func payNowButtonTapped(_ sender: Any) {
     print("Button Tapped")
     }
 }

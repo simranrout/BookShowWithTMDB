@@ -13,11 +13,11 @@ class CreditTableViewCell: UITableViewCell , UICollectionViewDelegate , UICollec
 
     static let identifier = "CreditTableViewCell"
     
-    @IBOutlet weak var CreditType: UILabel!
+    @IBOutlet weak var creditType: UILabel!
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var CreditModel = [MovieMemberDetails]()
+    var creditModel = [MovieMemberDetails]()
     
     static func nib() -> UINib{
         return UINib(nibName: CreditTableViewCell.identifier, bundle: nil)
@@ -46,22 +46,22 @@ class CreditTableViewCell: UITableViewCell , UICollectionViewDelegate , UICollec
     
     //MARK: - CollectionView Functions
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return CreditModel.count
+        return creditModel.count
         
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CreditCellCollectionView.Identifier, for: indexPath) as! CreditCellCollectionView
-        cell.configure(with: CreditModel[indexPath.row])
+        cell.configure(with: creditModel[indexPath.row])
         return cell
     }
     
      //MARK: - Configure Cell
     func configure(with movieMemberModelList: [MovieMemberDetails] , typeOfMember: String){
-        self.CreditModel = movieMemberModelList
-        if CreditModel.count != 0{
-            self.CreditType.text = typeOfMember
-            self.CreditModel = movieMemberModelList
+        self.creditModel = movieMemberModelList
+        if creditModel.count != 0{
+            self.creditType.text = typeOfMember
+            self.creditModel = movieMemberModelList
             collectionView.reloadData()
         }
     }

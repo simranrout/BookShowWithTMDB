@@ -24,9 +24,9 @@ class CreditsViewModel {
         let url = URL(string: Constants.base_URL+MovieID!+Constants.credit_URL)
         URLSession.shared.getData(url: url, structureType: CreditsDetails.self) { [weak self] result in
             switch result{
-            case .success(let CreditsDetails):
+            case .success(let creditsDetails):
                 DispatchQueue.main.async {
-                    self?.CreditDetailsGlobal = CreditsDetails
+                    self?.CreditDetailsGlobal = creditsDetails
                     self?.delegate?.fetchCredits(self?.CreditDetailsGlobal)
                 }
                 

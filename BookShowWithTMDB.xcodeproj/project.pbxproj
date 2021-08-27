@@ -242,11 +242,10 @@
 		F539A1C526C4E34A0062D666 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F57469F726D7C27A00FFC4D7 /* StoryBoards */,
 				F56FE25426D50E380066DFB8 /* Similar Movies Container View */,
 				F56C032C26D37865006E63CB /* Credit Container View */,
 				F5DD200226CF929700166262 /* Movie TableView Cell */,
-				F539A1B426C4E2F30062D666 /* Main.storyboard */,
-				F539A1B926C4E2F40062D666 /* LaunchScreen.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -324,6 +323,15 @@
 				F56FE25826D50E9B0066DFB8 /* SimilarMoviesCollectionViewCell.xib */,
 			);
 			path = SimilarMoviesCollectionView;
+			sourceTree = "<group>";
+		};
+		F57469F726D7C27A00FFC4D7 /* StoryBoards */ = {
+			isa = PBXGroup;
+			children = (
+				F539A1B426C4E2F30062D666 /* Main.storyboard */,
+				F539A1B926C4E2F40062D666 /* LaunchScreen.storyboard */,
+			);
+			path = StoryBoards;
 			sourceTree = "<group>";
 		};
 		F581A09226D6A5C00002D189 /* Helper */ = {

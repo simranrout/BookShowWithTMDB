@@ -10,7 +10,7 @@ import UIKit
 
 extension UIImageView{
     
-    func FetchImageFromURL(fetchedurl: String){
+    func fetchImageFromURL(fetchedurl: String){
         
         if let cachedImage = ImageCacheManager.getImageFromCache(fetchedurl){
             self.image = UIImage(data: cachedImage)
@@ -24,14 +24,14 @@ extension UIImageView{
         let session = URLSession.shared
         let dataTask = session.dataTask(with: url!) { Data, Response, Error in
             if Error == nil && Data != nil {
-                let PosterImage =  UIImage(data: Data!)
+                let posterImage =  UIImage(data: Data!)
                 ImageCacheManager.setImageInCache(fetchedurl, Data!)
                 DispatchQueue.main.async {
-                    guard PosterImage != nil else {
+                    guard posterImage != nil else {
                         self.image = UIImage(systemName: "person.circle")
                         return
                     }
-                    self.image = PosterImage
+                    self.image = posterImage
                 }
             }
             else{

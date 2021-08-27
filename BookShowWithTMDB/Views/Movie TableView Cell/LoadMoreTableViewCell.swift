@@ -10,7 +10,7 @@ import UIKit
 class LoadMoreTableViewCell: UITableViewCell {
 
     @IBOutlet weak var loadMore: UIActivityIndicatorView!
-    static var LoadMorePrototypeCellID = "LoadMoreTableViewCell"
+    static var loadMorePrototypeCellID = "LoadMoreTableViewCell"
     
    static func nib() -> UINib{
         return UINib(nibName: "LoadMoreTableViewCell", bundle: nil)

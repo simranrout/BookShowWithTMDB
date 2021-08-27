@@ -9,23 +9,26 @@ import Foundation
 import UIKit
 class SignUpViewController: UIViewController , UIImagePickerControllerDelegate , UINavigationControllerDelegate{
    
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var UserNameField: UITextField!
-    @IBOutlet weak var EmailField: UITextField!
-    @IBOutlet weak var PasswordField: UITextField!
-    @IBOutlet weak var ProfileImageView: UIImageView!
-    @IBOutlet weak var SignUpButton: UIButton!
-    var KeyboardHeight:CGFloat = 0.0
+  
+    @IBOutlet weak var signUpScrollView: UIScrollView!
+    @IBOutlet weak var userNameField: UITextField!
+    @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
+    
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var signInButton: UIButton!
+    @IBOutlet weak var signUpButton: UIButton!
+    var keyboardHeight:CGFloat = 0.0
     var isScrollViewActive = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UserNameField.autocorrectionType = .no
-        EmailField.autocorrectionType = .no
-        ProfileImageView.layer.masksToBounds = true
-        ProfileImageView.layer.cornerRadius = 45
-        ProfileImageView.contentMode = .scaleAspectFill
-        SignUpButton.layer.cornerRadius = 12
+        userNameField.autocorrectionType = .no
+        emailField.autocorrectionType = .no
+        profileImageView.layer.masksToBounds = true
+        profileImageView.layer.cornerRadius = 45
+        profileImageView.contentMode = .scaleAspectFill
+        signUpButton.layer.cornerRadius = 12
 
         addKeyboardTapGesture()
 
@@ -39,16 +42,16 @@ class SignUpViewController: UIViewController , UIImagePickerControllerDelegate ,
     }
   
     //Action For SignUpButton pressed Create user
-    @IBAction func SignUpButtonTapped(_ sender: Any) {
-        guard  let username = UserNameField.text ,
-               let emailID = EmailField.text ,
+    @IBAction func signUpButtonTapped(_ sender: Any) {
+        guard  let username = userNameField.text ,
+               let emailID = emailField.text ,
                !emailID.trimmingCharacters(in: .whitespaces).isEmpty , !username.trimmingCharacters(in: .whitespaces).isEmpty ,
                username.trimmingCharacters(in: .alphanumerics).isEmpty else {
             singleMessageAlertView(titleText: "Invalid Input", message: "Please enter a valid username...", preferredStyle: .actionSheet)
             return
         }
         
-        guard let password = PasswordField.text ,
+        guard let password = passwordField.text ,
               password.count >= 8 ,
               !password.trimmingCharacters(in: .whitespaces).isEmpty else {
             singleMessageAlertView(titleText: "Invalid Input", message: "Password Must Be More Than 8 Character", preferredStyle: .actionSheet)
@@ -59,7 +62,7 @@ class SignUpViewController: UIViewController , UIImagePickerControllerDelegate ,
     }
     
     //Action For SignInButton pressed log in 
-    @IBAction func SignInButtonPressed(_ sender: Any) {
+    @IBAction func signInButtonPressed(_ sender: Any) {
        changViewController(storyBoardID: "SignInVC")
     }
     
@@ -71,8 +74,8 @@ class SignUpViewController: UIViewController , UIImagePickerControllerDelegate ,
          profile image , so that we can know the user tapped on the profileimageview
          */
         let tap = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped)) // calling imageViewTapped function
-        ProfileImageView.isUserInteractionEnabled = true
-        ProfileImageView.addGestureRecognizer(tap)
+        profileImageView.isUserInteractionEnabled = true
+        profileImageView.addGestureRecognizer(tap)
     }
     
     
@@ -107,16 +110,16 @@ class SignUpViewController: UIViewController , UIImagePickerControllerDelegate ,
         guard let profileImage = info[UIImagePickerController.InfoKey.editedImage] else{
             return
         }
-        ProfileImageView.image = profileImage as? UIImage
+        profileImageView.image = profileImage as? UIImage
     }
     
     
     // MARK: - add  and remove scroll view on key board appearance
     @objc func keyboardAppearedOnScreen(_ notification: NSNotification){
          if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-            KeyboardHeight = keyboardFrame.cgRectValue.height
+            keyboardHeight = keyboardFrame.cgRectValue.height
             if !isScrollViewActive{
-                self.scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.scrollView.frame.height + KeyboardHeight)
+                self.signUpScrollView.contentSize = CGSize(width: self.view.frame.width, height: self.signUpScrollView.frame.height + keyboardHeight)
                
                 isScrollViewActive = true
             }
@@ -124,7 +127,7 @@ class SignUpViewController: UIViewController , UIImagePickerControllerDelegate ,
      }
      @objc func keyboardDisappredOnScreen(){
         if isScrollViewActive{
-            self.scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.scrollView.frame.height - KeyboardHeight)
+            self.signUpScrollView.contentSize = CGSize(width: self.view.frame.width, height: self.signUpScrollView.frame.height - keyboardHeight)
             isScrollViewActive = false
         }
      }

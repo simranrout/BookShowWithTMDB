@@ -7,8 +7,9 @@
 
 import Foundation
 class GenreParsing {
-    var JsonDict = [Int:String]()
-    var jsonData : GenreContainer?
+    
+    
+    var jsonData: GenreContainer?
     func genreJSONParse(){
         guard GenreCaching.genreCache.count == 0 else{
             return
@@ -30,6 +31,7 @@ class GenreParsing {
             print("There is some issue in JSon parsing")
         }
     }
+    
     static func getGenresFromList(_ id: [Int]) -> String {
         var genreStringList = [String]()
         for genreId in id {

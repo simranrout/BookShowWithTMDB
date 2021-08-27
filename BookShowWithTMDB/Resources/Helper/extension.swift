@@ -38,12 +38,12 @@ extension UIViewController{
 }
 
 extension String{
-    func LanguageCodeToLanguageName() -> String{
+    func languageCodeToLanguageName() -> String{
       return  NSLocale.current.localizedString(forLanguageCode: self) ?? "N/A"
     }
     
     func convertToDate() -> String{
-        guard  self != nil || self != "" else {
+        guard  self != "" else {
             return "N/A"
         }
         let dateFormatter = DateFormatter()

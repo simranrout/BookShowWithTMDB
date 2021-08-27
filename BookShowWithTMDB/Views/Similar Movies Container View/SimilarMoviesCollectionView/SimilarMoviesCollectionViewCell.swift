@@ -11,10 +11,10 @@ class SimilarMoviesCollectionViewCell: UICollectionViewCell {
 
     //MARK: - Outlet declaration
     
-    @IBOutlet weak var SimilarMovieImageView: UIImageView!
-    @IBOutlet weak var MovieTitleTextLabel: UILabel!
-    @IBOutlet weak var LanguageTextLabel: UILabel!
-    @IBOutlet weak var ReleaseDate: UILabel!
+    @IBOutlet weak var similarMovieImageView: UIImageView!
+    @IBOutlet weak var movieTitleTextLabel: UILabel!
+    @IBOutlet weak var languageTextLabel: UILabel!
+    @IBOutlet weak var releaseDate: UILabel!
     
     //MARK: - collectionview ID and nib
     
@@ -29,10 +29,10 @@ class SimilarMoviesCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(with similarMoviesModel: SimilarMoviesDetails){
-        let ImageUrl = Constants.thumbnailURL+ImageSize.MovieTableViewImageSize+similarMoviesModel.poster_path!
-        SimilarMovieImageView.FetchImageFromURL(fetchedurl: ImageUrl)
-        MovieTitleTextLabel.text = similarMoviesModel.original_title
-        LanguageTextLabel.text = similarMoviesModel.original_language.LanguageCodeToLanguageName()
-        ReleaseDate.text = similarMoviesModel.release_date.convertToDate()
+        let imageUrl = Constants.thumbnailURL+ImageSize.MovieTableViewImageSize+similarMoviesModel.poster_path!
+        similarMovieImageView.fetchImageFromURL(fetchedurl: imageUrl)
+        movieTitleTextLabel.text = similarMoviesModel.original_title
+        languageTextLabel.text = similarMoviesModel.original_language.languageCodeToLanguageName()
+        releaseDate.text = similarMoviesModel.release_date.convertToDate()
     }
 }

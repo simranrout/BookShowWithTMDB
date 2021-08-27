@@ -39,7 +39,7 @@ class MovieTableViewCell: UITableViewCell {
         }
        
         movieTitleTextLabel.text = movieDetailsGlobal?.original_title
-        movieLanguageTextLabel.text = movieDetailsGlobal?.original_language.LanguageCodeToLanguageName()
+        movieLanguageTextLabel.text = movieDetailsGlobal?.original_language.languageCodeToLanguageName()
         
     
         movieReleaseDateTextLabel.text  = movieDetailsGlobal?.release_date.convertToDate()
@@ -48,7 +48,7 @@ class MovieTableViewCell: UITableViewCell {
             return
         }
         let imageURL = Constants.thumbnailURL + ImageSize.MovieTableViewImageSize + (movieDetailsGlobal!.poster_path)!
-        moviePosterImageView.FetchImageFromURL(fetchedurl: imageURL)
+        moviePosterImageView.fetchImageFromURL(fetchedurl: imageURL)
     }
    
     

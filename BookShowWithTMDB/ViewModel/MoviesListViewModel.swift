@@ -17,13 +17,11 @@ class MoviesListViewModel{
     
     var movieResults = [MovieModel]()
     var delegate: MoviesListFetchprotocol?
-    var page1 = 0
     var maxpage = Int.max
     var genreParse = GenreParsing()
     
-    func movieDataFetch(_ page : Int) {
+    func movieDataFetch(_ page: Int) {
         genreParse.genreJSONParse()
-        page1 += 1
         let url = URL(string: Constants.base_URL + Constants.movieDetails_URL+String(page))
         URLSession.shared.getData(url: url, structureType: resultModel.self)
         {   [weak self] result in

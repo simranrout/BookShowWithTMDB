@@ -21,8 +21,8 @@ extension URLSession {
             return
         }
         
-        let task = dataTask(with: url) { Data, response, error in
-            guard Data != nil else{
+        let task = dataTask(with: url) { reponseData, _ , error in
+            guard reponseData != nil else{
                 if error != nil{
                     completion(.failure(error!))
                 }
@@ -33,7 +33,7 @@ extension URLSession {
             }
             do{
                 let decoder = JSONDecoder()
-                let resultModel = try decoder.decode(structureType , from: Data!)
+                let resultModel = try decoder.decode(structureType , from: reponseData!)
                 completion(.success(resultModel))
             }
             catch{

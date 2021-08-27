@@ -8,7 +8,7 @@
 import UIKit
 
 class MovieTabViewController: UIViewController , UITableViewDelegate , UITableViewDataSource  {
-    @IBOutlet weak var TableView: UITableView!
+    @IBOutlet weak var tableView: UITableView!
     
     var movieSearch = UISearchController(searchResultsController: nil)
     var page = 1
@@ -22,12 +22,12 @@ class MovieTabViewController: UIViewController , UITableViewDelegate , UITableVi
         super.viewDidLoad()
         
         // Making itself as a datasource and delegate of tableview
-        TableView.dataSource = self
-        TableView.delegate = self
+        tableView.dataSource = self
+        tableView.delegate = self
         movieListVM.delegate = self
         configureSearchBar()
         //Adding Loadmore cell
-        TableView.register(LoadMoreTableViewCell.nib(), forCellReuseIdentifier: LoadMoreTableViewCell.LoadMorePrototypeCellID)
+        tableView.register(LoadMoreTableViewCell.nib(), forCellReuseIdentifier: LoadMoreTableViewCell.loadMorePrototypeCellID)
         movieListVM.movieDataFetch(page)
         genreId.genreJSONParse()
         
@@ -37,16 +37,16 @@ class MovieTabViewController: UIViewController , UITableViewDelegate , UITableVi
     //Passing the data (Movie Model for specific row ) to Movie Details View controller through segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-          guard TableView.indexPathForSelectedRow != nil else {
+          guard tableView.indexPathForSelectedRow != nil else {
               return
           }
         if isSearching{
-            let updatedResult = filterMovieList[TableView.indexPathForSelectedRow!.row]
+            let updatedResult = filterMovieList[tableView.indexPathForSelectedRow!.row]
             let movieDetailsVC =  segue.destination as! MovieDetailsViewController
             movieDetailsVC.updateMovieDetails = updatedResult
         }
         else{
-            let updatedResult = results[TableView.indexPathForSelectedRow!.row]
+            let updatedResult = results[tableView.indexPathForSelectedRow!.row]
             let movieDetailsVC =  segue.destination as! MovieDetailsViewController
             movieDetailsVC.updateMovieDetails = updatedResult
         }
@@ -56,7 +56,6 @@ class MovieTabViewController: UIViewController , UITableViewDelegate , UITableVi
     //MARK:- TableView Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isSearching{
-            print("print here", filterMovieList.count)
             return filterMovieList.count
         }
         else{
@@ -66,14 +65,14 @@ class MovieTabViewController: UIViewController , UITableViewDelegate , UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
          
-        let cell = TableView.dequeueReusableCell(withIdentifier: MovieTableViewCell.moviePrototypeCellID, for: indexPath) as! MovieTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: MovieTableViewCell.moviePrototypeCellID, for: indexPath) as! MovieTableViewCell
         if isSearching {
             cell.displayingDataOnCell(filterMovieList[indexPath.row])
             return cell
         }
         else{
             if indexPath.row == results.count{
-                let loadCell = TableView.dequeueReusableCell(withIdentifier: LoadMoreTableViewCell.LoadMorePrototypeCellID, for: indexPath) as! LoadMoreTableViewCell
+                let loadCell = tableView.dequeueReusableCell(withIdentifier: LoadMoreTableViewCell.loadMorePrototypeCellID, for: indexPath) as! LoadMoreTableViewCell
                 //return cell
                 if results.count > 0 {
                     loadMore()
@@ -81,12 +80,10 @@ class MovieTabViewController: UIViewController , UITableViewDelegate , UITableVi
                 return loadCell
             }
             
-            let cell = TableView.dequeueReusableCell(withIdentifier: MovieTableViewCell.moviePrototypeCellID, for: indexPath) as! MovieTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: MovieTableViewCell.moviePrototypeCellID, for: indexPath) as! MovieTableViewCell
             cell.displayingDataOnCell(self.results[indexPath.row])
             return cell
         }
-        
-        
     }
     
     func loadMore(){
@@ -101,17 +98,14 @@ class MovieTabViewController: UIViewController , UITableViewDelegate , UITableVi
             for i in 0...self.results.count-1{
                 if self.results[i].original_title.components(separatedBy: .whitespaces).joined().lowercased().contains(text){
                     filterMovieList.append(self.results[i])
-                    TableView.separatorStyle = .singleLine
-                    TableView.reloadData()
-                    print("search text result" , self.results[i].original_title , i  , filterMovieList , filterMovieList.count)
-                    
+                    tableView.separatorStyle = .singleLine
+                    tableView.reloadData()
                 }
             }
             if filterMovieList.count == 0 {
-                isSearching = false
                 filterMovieList = []
-                TableView.separatorStyle = .none
-                TableView.reloadData()
+                tableView.separatorStyle = .none
+                tableView.reloadData()
             }
             return
         }
@@ -126,8 +120,8 @@ extension MovieTabViewController: MoviesListFetchprotocol {
 
     func fetchMovieList(_ results: [MovieModel]) {
         self.results.append(contentsOf: results)
-        TableView.separatorStyle = .singleLine
-        TableView.reloadData()
+        tableView.separatorStyle = .singleLine
+        tableView.reloadData()
     }
     
 }
@@ -139,15 +133,13 @@ extension MovieTabViewController: UISearchResultsUpdating , UISearchBarDelegate{
         guard  searchText != "" else {
             isSearching = false
             filterMovieList.removeAll()
-            TableView.reloadData()
+            tableView.reloadData()
             return
         }
         isSearching = true
         let filteredText = searchText!.components(separatedBy: .whitespaces).joined().lowercased()
         searchTextFromMovieList(filteredText)
     }
-    
-    
     
     func configureSearchBar(){
         navigationItem.searchController = movieSearch
@@ -156,11 +148,12 @@ extension MovieTabViewController: UISearchResultsUpdating , UISearchBarDelegate{
         movieSearch.searchBar.placeholder = "Type Movie Name Here..."
         movieSearch.obscuresBackgroundDuringPresentation = false
     }
+    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         movieSearch.searchBar.text = ""
         isSearching = false
         filterMovieList = []
-        TableView.reloadData()
+        tableView.reloadData()
     }
     
     

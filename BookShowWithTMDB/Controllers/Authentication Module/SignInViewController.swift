@@ -9,23 +9,23 @@ import UIKit
 import PDFKit
 class SignInViewController: UIViewController {
 
-    @IBOutlet weak var SignInScrollView: UIScrollView!
+    @IBOutlet weak var signInScrollView: UIScrollView!
     //Variable declaration
-    @IBOutlet weak var SignInButton: UIButton!
-    @IBOutlet weak var UsernameField: UITextField!
-    @IBOutlet weak var Password: UITextField!
-    @IBOutlet weak var BackgroundImageView: UIImageView!
+    @IBOutlet weak var signInButton: UIButton!
+    @IBOutlet weak var usernameField: UITextField!
+    @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var backgroundImageView: UIImageView!
     var isScrollViewActive = false
-    var KeyboardHeight: CGFloat = 0.0
+    var keyboardHeight: CGFloat = 0.0
     override func viewDidLoad() {
         super.viewDidLoad()
-        BackgroundImageView.alpha = 0.7
-        SignInScrollView.showsHorizontalScrollIndicator = false
-        SignInScrollView.showsVerticalScrollIndicator = false
+        backgroundImageView.alpha = 0.7
+        signInScrollView.showsHorizontalScrollIndicator = false
+        signInScrollView.showsVerticalScrollIndicator = false
         //Added Corner Radius (UI Changes)
-        UsernameField.layer.cornerRadius = 22
-        Password.layer.cornerRadius = 22
-        SignInButton.layer.cornerRadius = 12
+        usernameField.layer.cornerRadius = 22
+        password.layer.cornerRadius = 22
+        signInButton.layer.cornerRadius = 12
         
         addKeyboardTapGesture()
         //call function when keyboard appears or  disappears
@@ -37,15 +37,15 @@ class SignInViewController: UIViewController {
     
    
     //Action for Sign Up button (new user)
-    @IBAction func SignUpButtonTapped(_ sender: Any) {
+    @IBAction func signUpButtonTapped(_ sender: Any) {
         changViewController(storyBoardID: "SignUpVC")
     }
     
  
     
     //Action for Sign In button
-    @IBAction func SignInButtonTapped(_ sender: Any) {
-        guard UsernameField.text != "" && Password.text != "" else{
+    @IBAction func signInButtonTapped(_ sender: Any) {
+        guard usernameField.text != "" && password.text != "" else{
             return
         }
         changViewController(storyBoardID: "MainViewVC")
@@ -54,16 +54,16 @@ class SignInViewController: UIViewController {
     }
     @objc func keyboardAppearedOnScreen(_ notification: NSNotification){
          if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-            KeyboardHeight = keyboardFrame.cgRectValue.height
+            keyboardHeight = keyboardFrame.cgRectValue.height
             if !isScrollViewActive{
-                self.SignInScrollView.contentSize = CGSize(width: self.view.frame.width, height: self.SignInScrollView.frame.height + KeyboardHeight)
+                self.signInScrollView.contentSize = CGSize(width: self.view.frame.width, height: self.signInScrollView.frame.height + keyboardHeight)
                 isScrollViewActive = true
             }
                }
      }
      @objc func keyboardDisappredOnScreen(){
         if isScrollViewActive{
-            self.SignInScrollView.contentSize = CGSize(width: self.view.frame.width, height: self.SignInScrollView.frame.height - KeyboardHeight)
+            self.signInScrollView.contentSize = CGSize(width: self.view.frame.width, height: self.signInScrollView.frame.height - keyboardHeight)
             isScrollViewActive = false
         }
      }

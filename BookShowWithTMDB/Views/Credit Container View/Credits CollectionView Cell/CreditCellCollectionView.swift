@@ -9,10 +9,10 @@ import UIKit
 
 class CreditCellCollectionView: UICollectionViewCell {
 
-    @IBOutlet weak var CastImageView: UIImageView!
-    @IBOutlet weak var NameTextLabel: UILabel!
-    @IBOutlet weak var GenderTextLabel: UILabel!
-    @IBOutlet weak var OccupationTextLabel: UILabel!
+    @IBOutlet weak var castImageView: UIImageView!
+    @IBOutlet weak var nameTextLabel: UILabel!
+    @IBOutlet weak var genderTextLabel: UILabel!
+    @IBOutlet weak var occupationTextLabel: UILabel!
     
     static let Identifier = "CreditCellCollectionView"
     static func nib()-> UINib{
@@ -22,32 +22,32 @@ class CreditCellCollectionView: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        CastImageView.layer.masksToBounds = true
-        CastImageView.layer.cornerRadius = 125/2
-        CastImageView.contentMode = .scaleAspectFill
+        castImageView.layer.masksToBounds = true
+        castImageView.layer.cornerRadius = 125/2
+        castImageView.contentMode = .scaleAspectFill
     }
     
     public func configure(with movieMemberModel: MovieMemberDetails ){
         
         if movieMemberModel.profile_path == nil{
-            CastImageView.image = UIImage(systemName: "person.circle")!
+            castImageView.image = UIImage(systemName: "person.circle")!
         }
         else{
             let imageUrl = Constants.thumbnailURL+ImageSize.MovieTableViewImageSize+movieMemberModel.profile_path!
-            CastImageView.FetchImageFromURL(fetchedurl: imageUrl)
+            castImageView.fetchImageFromURL(fetchedurl: imageUrl)
         }
         if movieMemberModel.gender == 1{
-            self.GenderTextLabel.text = "Female"
+            self.genderTextLabel.text = "Female"
         }
         else if movieMemberModel.gender == 2{
-            self.GenderTextLabel.text = "Male"
+            self.genderTextLabel.text = "Male"
         }
         else{
-            self.GenderTextLabel.text = "Others"
+            self.genderTextLabel.text = "Others"
         }
 
-      self.NameTextLabel.text = movieMemberModel.original_name
-     self.OccupationTextLabel.text = movieMemberModel.known_for_department
+      self.nameTextLabel.text = movieMemberModel.original_name
+     self.occupationTextLabel.text = movieMemberModel.known_for_department
         
     }
 

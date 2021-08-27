@@ -17,7 +17,7 @@ class SimilarMoviesViewModel {
     var similarMoviesData = [SimilarMoviesDetails]()
     var delegate: SimilarMovieFetchprotocol?
     
-    func FetchData(MovieID: String){
+    func fetchData(MovieID: String){
         let url = URL(string: Constants.base_URL+MovieID+Constants.similarMovie_URL)
         URLSession.shared.getData(url: url, structureType: SimilarMoviesResponse.self)
         { [weak self] result in
@@ -27,8 +27,6 @@ class SimilarMoviesViewModel {
                 DispatchQueue.main.async {
                     self?.similarMoviesData = credit.results!
                     self?.delegate!.fetchSimilarMovie(self!.similarMoviesData)
-                    
-                    
                 }
             case .failure(let error):
                 print(error)

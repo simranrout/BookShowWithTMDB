@@ -316,7 +316,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="BookNowButtonTapped:" destination="1Jv-EH-b44" eventType="touchUpInside" id="Xvg-eO-Pwr"/>
+                                                    <action selector="bookNowButtonTapped:" destination="1Jv-EH-b44" eventType="touchUpInside" id="v9E-D0-LB6"/>
                                                     <segue destination="fxF-UA-HJ2" kind="show" id="dUQ-DM-h0K"/>
                                                 </connections>
                                             </button>
@@ -385,14 +385,22 @@
                     <connections>
                         <outlet property="ApprovalTextLabel" destination="G7n-Ye-58j" id="llT-Vg-G70"/>
                         <outlet property="BackgroundImageView" destination="lsa-s1-hF2" id="8lQ-Qi-vvm"/>
-                        <outlet property="BookNowButton" destination="iVg-D7-nan" id="LCW-dm-nls"/>
                         <outlet property="MovieDescriptionTextLabel" destination="U2r-df-Xej" id="Eu5-LL-pEq"/>
                         <outlet property="MovieLanguageTextLabel" destination="PDw-4y-oiC" id="Rjm-tY-mHW"/>
                         <outlet property="MoviePosterImageView" destination="7Gu-iK-V5Q" id="IlO-Fi-Iyo"/>
                         <outlet property="MovieReleaseDateTextLabel" destination="KDh-B4-Kzl" id="xbA-xV-4VO"/>
                         <outlet property="MovieTitleTextLabel" destination="pFt-zs-eYb" id="kaE-QP-5a9"/>
                         <outlet property="ProgressBar" destination="mao-f2-mPu" id="Hju-Nk-0QG"/>
-                        <outlet property="movieGenreTextLabel" destination="eNl-3U-QYv" id="TcT-E2-bfn"/>
+                        <outlet property="approvalTextLabel" destination="G7n-Ye-58j" id="Ghs-UD-lBM"/>
+                        <outlet property="backgroundImageView" destination="lsa-s1-hF2" id="KUm-Tx-NVW"/>
+                        <outlet property="bookNowButton" destination="iVg-D7-nan" id="846-Mu-Fvd"/>
+                        <outlet property="movieDescriptionTextLabel" destination="U2r-df-Xej" id="Bnd-en-SRw"/>
+                        <outlet property="movieGenreTextLabel" destination="eNl-3U-QYv" id="RDg-Qw-kyP"/>
+                        <outlet property="movieLanguageTextLabel" destination="PDw-4y-oiC" id="7W1-k3-VxF"/>
+                        <outlet property="moviePosterImageView" destination="7Gu-iK-V5Q" id="6Ke-Cv-snm"/>
+                        <outlet property="movieReleaseDateTextLabel" destination="KDh-B4-Kzl" id="gWM-2p-cwT"/>
+                        <outlet property="movieTitleTextLabel" destination="pFt-zs-eYb" id="NQs-96-Lhn"/>
+                        <outlet property="progressBar" destination="mao-f2-mPu" id="VSi-dY-sMS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jpb-Z4-6Gh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -439,7 +447,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="PayNowButtonTapped:" destination="fxF-UA-HJ2" eventType="touchUpInside" id="VSQ-iN-bo3"/>
+                                    <action selector="payNowButtonTapped:" destination="fxF-UA-HJ2" eventType="touchUpInside" id="7GP-Pn-ewF"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kpg-B8-Y3e">
@@ -471,7 +479,7 @@
                     <navigationItem key="navigationItem" id="our-iK-UeE"/>
                     <value key="contentSizeForViewInPopover" type="size" width="375" height="812"/>
                     <connections>
-                        <outlet property="PayNowButton" destination="tHO-MT-fm3" id="BRE-Tc-ImO"/>
+                        <outlet property="payNowButton" destination="tHO-MT-fm3" id="Baq-C0-cJf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R3b-Oz-b8k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -556,7 +564,7 @@
                                                     <color key="titleColor" systemColor="secondarySystemBackgroundColor"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="SignInButtonTapped:" destination="rva-qq-krL" eventType="touchUpInside" id="jh8-kv-He5"/>
+                                                    <action selector="signInButtonTapped:" destination="rva-qq-krL" eventType="touchUpInside" id="fT7-jY-u7i"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hkI-SX-9r2">
@@ -567,7 +575,7 @@
                                                 <color key="tintColor" systemColor="labelColor"/>
                                                 <state key="normal" title="Create an account"/>
                                                 <connections>
-                                                    <action selector="SignUpButtonTapped:" destination="rva-qq-krL" eventType="touchUpInside" id="8c2-Bu-V0B"/>
+                                                    <action selector="signUpButtonTapped:" destination="rva-qq-krL" eventType="touchUpInside" id="TaQ-EK-luv"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -620,11 +628,11 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="BackgroundImageView" destination="NUu-rb-FMY" id="1PQ-eo-Euh"/>
-                        <outlet property="Password" destination="jJ6-OQ-N4s" id="JSc-ws-9bm"/>
-                        <outlet property="SignInButton" destination="qdJ-UP-H4Q" id="ypw-9Q-vK9"/>
-                        <outlet property="SignInScrollView" destination="9Ga-HN-Njd" id="5fG-Rg-Cq3"/>
-                        <outlet property="UsernameField" destination="Vc5-il-D1I" id="8Vd-aS-Zae"/>
+                        <outlet property="backgroundImageView" destination="NUu-rb-FMY" id="FSl-OW-Asr"/>
+                        <outlet property="password" destination="jJ6-OQ-N4s" id="6Yy-IQ-f2I"/>
+                        <outlet property="signInButton" destination="qdJ-UP-H4Q" id="dnB-6J-sLG"/>
+                        <outlet property="signInScrollView" destination="9Ga-HN-Njd" id="cn0-U3-IOh"/>
+                        <outlet property="usernameField" destination="Vc5-il-D1I" id="Wzc-il-h92"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bPb-za-4U3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -686,7 +694,7 @@
                                                             <color key="titleColor" systemColor="secondarySystemBackgroundColor"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="SignUpButtonTapped:" destination="oxt-Am-Dr2" eventType="touchUpInside" id="G0h-F7-2h5"/>
+                                                            <action selector="signUpButtonTapped:" destination="oxt-Am-Dr2" eventType="touchUpInside" id="sjP-mG-ioe"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X2t-vK-lG2">
@@ -694,7 +702,7 @@
                                                         <color key="tintColor" systemColor="labelColor"/>
                                                         <state key="normal" title="Already have an account"/>
                                                         <connections>
-                                                            <action selector="SignInButtonPressed:" destination="oxt-Am-Dr2" eventType="touchUpInside" id="3nL-Pr-7mY"/>
+                                                            <action selector="signInButtonPressed:" destination="oxt-Am-Dr2" eventType="touchUpInside" id="jLs-ed-c6L"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -744,9 +752,13 @@
                         <outlet property="EmailField" destination="YqU-3i-Se5" id="ZgH-pc-SpU"/>
                         <outlet property="PasswordField" destination="1qb-JB-69B" id="wCl-Ij-CVo"/>
                         <outlet property="ProfileImageView" destination="Bn7-2H-eDY" id="S2e-FR-Gwd"/>
-                        <outlet property="SignUpButton" destination="El9-ex-8Uj" id="VBj-qP-K9O"/>
-                        <outlet property="UserNameField" destination="j11-TX-IQ0" id="zzQ-ht-xyd"/>
-                        <outlet property="scrollView" destination="iL7-eQ-0aZ" id="0Yw-rv-li7"/>
+                        <outlet property="emailField" destination="YqU-3i-Se5" id="Krk-YL-Eev"/>
+                        <outlet property="passwordField" destination="1qb-JB-69B" id="ARo-1R-cLf"/>
+                        <outlet property="profileImageView" destination="Bn7-2H-eDY" id="MwQ-Rr-aCO"/>
+                        <outlet property="signInButton" destination="X2t-vK-lG2" id="cBS-yx-QKT"/>
+                        <outlet property="signUpButton" destination="El9-ex-8Uj" id="RtR-wr-8eV"/>
+                        <outlet property="signUpScrollView" destination="iL7-eQ-0aZ" id="gAp-5t-3Ow"/>
+                        <outlet property="userNameField" destination="j11-TX-IQ0" id="uOt-Tu-8eH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oRf-UD-mAa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
