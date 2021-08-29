@@ -6,40 +6,53 @@
 //
 
 import UIKit
+import Combine
 
-class MovieTabViewController: UIViewController , UITableViewDelegate , UITableViewDataSource  {
+class MovieTabViewController: UIViewController   {
     @IBOutlet weak var tableView: UITableView!
     
     var movieSearch = UISearchController(searchResultsController: nil)
     var page = 1
     var results = [MovieModel]()
     var movieListVM = MoviesListViewModel()
-    var genreId = GenreParsing()
     var filterMovieList = [MovieModel]()
     var isSearching: Bool = false
+    var stateObserver :  AnyCancellable?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Making itself as a datasource and delegate of tableview
-        tableView.dataSource = self
-        tableView.delegate = self
-        movieListVM.delegate = self
+        configureTableView()
         configureSearchBar()
-        //Adding Loadmore cell
-        tableView.register(LoadMoreTableViewCell.nib(), forCellReuseIdentifier: LoadMoreTableViewCell.loadMorePrototypeCellID)
-        movieListVM.movieDataFetch(page)
-        genreId.genreJSONParse()
+        configureMovieViewModel()
         
       
+            
+        
     }
     
+    private func configureMovieViewModel(){
+        movieListVM.delegate = self
+        movieListVM.movieDataFetch(page)
+        stateObserver = movieListVM.$state.sink(receiveValue: { (state) in
+            switch state{
+            case .loading:
+                break
+            case .loadingCompleted:
+                break
+            case .errorOccured(let error) :
+                self.singleMessageAlertView(titleText: "Warning !!!", message: error?.description ?? "N/A", preferredStyle: .alert)
+            }
+        })
+        
+    }
     //Passing the data (Movie Model for specific row ) to Movie Details View controller through segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-          guard tableView.indexPathForSelectedRow != nil else {
-              return
-          }
+        guard tableView.indexPathForSelectedRow != nil else {
+            return
+        }
         if isSearching{
             let updatedResult = filterMovieList[tableView.indexPathForSelectedRow!.row]
             let movieDetailsVC =  segue.destination as! MovieDetailsViewController
@@ -51,6 +64,43 @@ class MovieTabViewController: UIViewController , UITableViewDelegate , UITableVi
             movieDetailsVC.updateMovieDetails = updatedResult
         }
         
+    }
+    
+    
+   private func loadMore(){
+        page += 1
+        movieListVM.movieDataFetch(page)
+    }
+    
+    private func searchTextFromMovieList(_ searchText: String){
+        guard searchText.trimmingCharacters(in: .whitespaces).isEmpty else {
+            let text = searchText
+            filterMovieList = []
+            for i in 0...self.results.count-1{
+                if self.results[i].original_title.components(separatedBy: .whitespaces).joined().lowercased().contains(text){
+                    filterMovieList.append(self.results[i])
+                    tableView.reloadData()
+                }
+            }
+            if filterMovieList.count == 0 {
+                filterMovieList = []
+                tableView.reloadData()
+            }
+            return
+        }
+    }
+}
+
+
+
+extension MovieTabViewController :  UITableViewDelegate , UITableViewDataSource {
+    //Configure tableView and register custom cell
+    private func configureTableView(){
+        // Making itself as a datasource and delegate of tableview
+        tableView.dataSource = self
+        tableView.delegate = self
+        //Adding Loadmore cell
+        tableView.register(LoadMoreTableViewCell.nib(), forCellReuseIdentifier: LoadMoreTableViewCell.loadMorePrototypeCellID)
     }
     
     //MARK:- TableView Methods
@@ -72,48 +122,19 @@ class MovieTabViewController: UIViewController , UITableViewDelegate , UITableVi
         }
         else{
             if indexPath.row == results.count{
-                let loadCell = tableView.dequeueReusableCell(withIdentifier: LoadMoreTableViewCell.loadMorePrototypeCellID, for: indexPath) as! LoadMoreTableViewCell
+                let loadCell = tableView.dequeueReusableCell(withIdentifier: LoadMoreTableViewCell.loadMorePrototypeCellID,
+                                                             for: indexPath) as! LoadMoreTableViewCell
                 //return cell
                 if results.count > 0 {
                     loadMore()
                 }
                 return loadCell
             }
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: MovieTableViewCell.moviePrototypeCellID, for: indexPath) as! MovieTableViewCell
+
             cell.displayingDataOnCell(self.results[indexPath.row])
             return cell
         }
     }
-    
-    func loadMore(){
-        page += 1
-        movieListVM.movieDataFetch(page)
-    }
-    
-    private func searchTextFromMovieList(_ searchText: String){
-        guard searchText.trimmingCharacters(in: .whitespaces).isEmpty else {
-            let text = searchText
-            filterMovieList = []
-            for i in 0...self.results.count-1{
-                if self.results[i].original_title.components(separatedBy: .whitespaces).joined().lowercased().contains(text){
-                    filterMovieList.append(self.results[i])
-                    tableView.separatorStyle = .singleLine
-                    tableView.reloadData()
-                }
-            }
-            if filterMovieList.count == 0 {
-                filterMovieList = []
-                tableView.separatorStyle = .none
-                tableView.reloadData()
-            }
-            return
-        }
-        
-    }
-    
-
-  
 }
 
 extension MovieTabViewController: MoviesListFetchprotocol {
@@ -141,7 +162,7 @@ extension MovieTabViewController: UISearchResultsUpdating , UISearchBarDelegate{
         searchTextFromMovieList(filteredText)
     }
     
-    func configureSearchBar(){
+   private func configureSearchBar(){
         navigationItem.searchController = movieSearch
         movieSearch.searchResultsUpdater = self
         navigationItem.hidesSearchBarWhenScrolling = false

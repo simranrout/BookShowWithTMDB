@@ -41,5 +41,6 @@ extension UIImageView{
             }
         }
         dataTask.resume()
-        }}
+        }
+    }
 }

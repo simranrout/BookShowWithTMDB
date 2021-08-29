@@ -14,32 +14,32 @@ extension URLSession {
         case invalidData
     }
     
-    func getData<T: Codable>(url: URL? , structureType: T.Type , completion: @escaping (Result<T, Error>)  -> Void){
+    func getData<T: Codable>(url: URL? , structureType: T.Type , completion: @escaping (Result<T, NetworkError>)  -> Void){
         
         guard let url = url else {
-            completion(.failure(CustomError.invalidURL))
+            completion(.failure(.badRequest))
             return
         }
         
-        let task = dataTask(with: url) { reponseData, _ , error in
-            guard reponseData != nil else{
-                if error != nil{
-                    completion(.failure(error!))
-                }
-                else{
-                    completion(.failure(CustomError.invalidData))
-                }
+        let task = dataTask(with: url) { responseData, _ , error in
+           
+            guard error == nil else{
+                completion(.failure(.other(error?.localizedDescription ?? "N/A")))
                 return
             }
+            guard responseData != nil else{
+                completion(.failure(.noJSONData))
+                return 
+            }
+           
             do{
                 let decoder = JSONDecoder()
-                let resultModel = try decoder.decode(structureType , from: reponseData!)
+                let resultModel = try decoder.decode(structureType , from: responseData!)
                 completion(.success(resultModel))
             }
-            catch{
-                completion(.failure(error))
+            catch {
+                completion(.failure(.JSONDecoder))
             }
-    
         }
         task.resume()
     }

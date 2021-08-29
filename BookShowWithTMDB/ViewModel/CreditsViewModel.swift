@@ -30,8 +30,8 @@ class CreditsViewModel {
                     self?.delegate?.fetchCredits(self?.CreditDetailsGlobal)
                 }
                 
-            case .failure(let error):
-                print(error)
+            case .failure(_):
+                break
             }
         }
     }

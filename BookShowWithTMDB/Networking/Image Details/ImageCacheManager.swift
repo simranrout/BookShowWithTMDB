@@ -11,12 +11,13 @@ class ImageCacheManager{
     static var imageCache = [String:Data]()
     
     static func setImageInCache(_ url: String , _ imageData: Data?){
-        
         imageCache[url] = imageData
-        
     }
     
     static func getImageFromCache(_ url: String) -> Data?{
         return imageCache[url]
+    }
+    static func cleanImageCache(){
+        imageCache.removeAll()
     }
 }

@@ -20,5 +20,8 @@ class GenreCaching{
     static func getImageFromCache(_ id: Int) -> String{
         return genreCache[id] ?? "N/A"
     }
+    static func cleanGenreCache(){
+        genreCache.removeAll()
+    }
 }
 

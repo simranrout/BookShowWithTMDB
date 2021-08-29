@@ -16,6 +16,5 @@ class PdfGenerateViewController: UIViewController {
         payNowButton.layer.cornerRadius = 12
     }
     @IBAction func payNowButtonTapped(_ sender: Any) {
-    print("Button Tapped")
     }
 }

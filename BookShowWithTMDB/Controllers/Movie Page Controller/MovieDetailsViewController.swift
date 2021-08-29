@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Foundation
+import Combine
 import  UIKit
 class MovieDetailsViewController: UIViewController {
     
@@ -28,16 +28,30 @@ class MovieDetailsViewController: UIViewController {
     var averageVote = 0
     var similarVM = SimilarMoviesViewModel()
     var creditsVM = CreditsViewModel()
-    var genre = GenreParsing()
+    var stateObserver :  AnyCancellable?
+    
     // MARK:- Methods
     override func viewDidLoad() {
-       
+        super.viewDidLoad()
         endCreditsFetch()
+        configureViewModel()
+        
+        bookNowButton.layer.cornerRadius = 12
+       
+    }
+    private func configureViewModel(){
         creditsVM.delegate = self
         similarVM.delegate = self
-        super.viewDidLoad()
-        bookNowButton.layer.cornerRadius = 12
-        genre.genreJSONParse()
+        stateObserver = similarVM.$state.sink(receiveValue: { (state) in
+            switch state{
+            case .loading:
+                break
+            case .loadingCompleted:
+                break
+            case .errorOccured(let error) :
+                self.singleMessageAlertView(titleText: "Warning !!!", message: error?.description ?? "N/A", preferredStyle: .alert)
+            }
+        })
     }
     
     private func endCreditsFetch(){
@@ -85,8 +99,6 @@ class MovieDetailsViewController: UIViewController {
         else {
             movieGenreTextLabel.text = "N/A"
         }
-       
-    
     }
     private func sendDataToChildVC(_ childName: String){
         DispatchQueue.main.async {
@@ -135,9 +147,7 @@ class MovieDetailsViewController: UIViewController {
     
     }
     
-    @IBAction func bookNowButtonTapped(_ sender: Any) {
-        print("buttonTapped")
-    }
+
    
 }
 

@@ -28,7 +28,6 @@ class GenreParsing {
         }
         catch{
             
-            print("There is some issue in JSon parsing")
         }
     }
     

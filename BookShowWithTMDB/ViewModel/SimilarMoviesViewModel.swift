@@ -14,22 +14,27 @@ protocol SimilarMovieFetchprotocol  {
 
 //MARK: - Fetching Similar Movies
 class SimilarMoviesViewModel {
+    
+    var genre = GenreParsing()
     var similarMoviesData = [SimilarMoviesDetails]()
     var delegate: SimilarMovieFetchprotocol?
+    @Published private (set) var state: MovieApiCallStatus =  .loadingCompleted
     
     func fetchData(MovieID: String){
+        genre.genreJSONParse()
         let url = URL(string: Constants.base_URL+MovieID+Constants.similarMovie_URL)
+        state = .loading
         URLSession.shared.getData(url: url, structureType: SimilarMoviesResponse.self)
         { [weak self] result in
-            
+            DispatchQueue.main.async {
             switch result{
             case .success( let credit):
-                DispatchQueue.main.async {
-                    self?.similarMoviesData = credit.results!
-                    self?.delegate!.fetchSimilarMovie(self!.similarMoviesData)
-                }
+                self?.similarMoviesData = credit.results!
+                self?.delegate!.fetchSimilarMovie(self!.similarMoviesData)
+                self?.state = .loadingCompleted
             case .failure(let error):
-                print(error)
+                self?.state = .errorOccured(error)
+            }
             }
         }
     }

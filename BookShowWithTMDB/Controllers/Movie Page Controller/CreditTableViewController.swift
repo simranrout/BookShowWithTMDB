@@ -68,7 +68,7 @@ class CreditTableViewController: UIViewController  , UITableViewDelegate , UITab
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row < 2{
-            return 270
+            return 280
         }
         else if indexPath.row == 2{
             return 450

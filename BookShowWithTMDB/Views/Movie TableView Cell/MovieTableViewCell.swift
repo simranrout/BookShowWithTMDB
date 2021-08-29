@@ -19,12 +19,10 @@ class MovieTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         // Initialization code
         moviePosterImageView.layer.cornerRadius = 22       
     }
    
-    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
@@ -40,19 +38,12 @@ class MovieTableViewCell: UITableViewCell {
        
         movieTitleTextLabel.text = movieDetailsGlobal?.original_title
         movieLanguageTextLabel.text = movieDetailsGlobal?.original_language.languageCodeToLanguageName()
-        
-    
         movieReleaseDateTextLabel.text  = movieDetailsGlobal?.release_date.convertToDate()
-        
         guard movieDetailsGlobal!.poster_path != nil else {
             return
         }
         let imageURL = Constants.thumbnailURL + ImageSize.MovieTableViewImageSize + (movieDetailsGlobal!.poster_path)!
         moviePosterImageView.fetchImageFromURL(fetchedurl: imageURL)
     }
-   
-    
-   
-        
 }
 
