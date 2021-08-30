@@ -230,7 +230,7 @@
                                 <rect key="frame" x="0.0" y="44" width="320" height="524"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L1Z-LQ-sAT">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="1792.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="1812.5"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lsa-s1-hF2">
                                                 <rect key="frame" x="0.0" y="20" width="320" height="320"/>
@@ -282,19 +282,13 @@
                                                         <rect key="frame" x="0.0" y="131" width="280" height="20.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PDw-4y-oiC">
-                                                                <rect key="frame" x="0.0" y="0.0" width="86.5" height="20.5"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Running Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qoa-9T-Hgw">
-                                                                <rect key="frame" x="96.5" y="0.0" width="87" height="20.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="135" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KDh-B4-Kzl">
-                                                                <rect key="frame" x="193.5" y="0.0" width="86.5" height="20.5"/>
+                                                                <rect key="frame" x="145" y="0.0" width="135" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -321,7 +315,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iVg-D7-nan">
                                                 <rect key="frame" x="10" y="642.5" width="300" height="30"/>
                                                 <color key="backgroundColor" name="Theme Color"/>
-                                                <state key="normal" title="Button">
+                                                <state key="normal" title="Book Now">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
@@ -329,10 +323,10 @@
                                                 </connections>
                                             </button>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v5b-42-e8Y" userLabel="Cast Container View">
-                                                <rect key="frame" x="0.0" y="702.5" width="320" height="990"/>
+                                                <rect key="frame" x="0.0" y="702.5" width="320" height="1010"/>
                                                 <color key="backgroundColor" name="Theme Color"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="990" id="BXY-mJ-cqQ"/>
+                                                    <constraint firstAttribute="height" constant="1010" id="BXY-mJ-cqQ"/>
                                                 </constraints>
                                                 <connections>
                                                     <segue destination="bWk-EC-4bp" kind="embed" identifier="ToCastVC" id="gcB-N1-4ct"/>
@@ -798,11 +792,11 @@
             <objects>
                 <viewController storyboardIdentifier="CreditTableViewVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bWk-EC-4bp" customClass="CreditTableViewController" customModule="BookShowWithTMDB" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NH2-Vm-tde">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="990"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="1010"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rux-Vy-BEk">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="990"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="1010"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>

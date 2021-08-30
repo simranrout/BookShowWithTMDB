@@ -30,6 +30,7 @@ DerivedData/
 *.dSYM.zip
 *.dSYM
 
+
 ## Playgrounds
 timeline.xctimeline
 playground.xcworkspace
@@ -47,7 +48,6 @@ playground.xcworkspace
 # .swiftpm
 
 .build/
-
 # CocoaPods
 #
 # We recommend against adding the Pods directory to your .gitignore. However
