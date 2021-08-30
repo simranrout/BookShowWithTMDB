@@ -6,7 +6,7 @@ Objective :-
     Here i have followed MVVM architecture and tried using some best practises and coding standards.
   
   
-Screen Details :- 
+# Screen Details :- 
   1. SignIn Screen :- Here those who have already have an account can log in . (In progress...)
   2. SignUp Screen :-  Here new users can create their account.  (In progress ...)
   3. Movie Tab :- 
