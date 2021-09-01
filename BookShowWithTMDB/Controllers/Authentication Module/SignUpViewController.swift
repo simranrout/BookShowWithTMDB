@@ -7,63 +7,99 @@
 
 import Foundation
 import UIKit
-class SignUpViewController: UIViewController , UIImagePickerControllerDelegate , UINavigationControllerDelegate{
+import Combine
+class SignUpViewController: UIViewController  , UINavigationControllerDelegate{
    
   
     @IBOutlet weak var signUpScrollView: UIScrollView!
     @IBOutlet weak var userNameField: UITextField!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
-    
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
-    var keyboardHeight:CGFloat = 0.0
-    var isScrollViewActive = false
-    
+    @IBOutlet weak var errorMessage: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureComponent()
+
+    }
+    func configureComponent(){
+        errorMessage.alpha = 0
         userNameField?.autocorrectionType = .no
         emailField?.autocorrectionType = .no
         profileImageView?.layer.masksToBounds = true
         profileImageView.layer.cornerRadius = 45
         profileImageView.contentMode = .scaleAspectFill
         signUpButton.layer.cornerRadius = 12
-
         addKeyboardTapGesture()
         signUpScrollView.addObserver()
-
+        addTapGestureOnImageView()
+        
+        
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        addTapGestureOnImageView()
-    }
-  
+   
+    
     //Action For SignUpButton pressed Create user
     @IBAction func signUpButtonTapped(_ sender: Any) {
+        let success =  validateInput()
+        if success {
+            createUser()
+        }
+        else{
+            errorMessage.showText("Kindly enter valid input")
+        }
+    }
+  
+    
+    private  func validateInput() -> Bool {
         guard  let username = userNameField.text ,
                let emailID = emailField.text ,
-               !emailID.trimmingCharacters(in: .whitespaces).isEmpty , !username.trimmingCharacters(in: .whitespaces).isEmpty ,
-               username.trimmingCharacters(in: .alphanumerics).isEmpty else {
+               !emailID.trimmingCharacters(in: .whitespaces).isEmpty , !username.trimmingCharacters(in: .whitespaces).isEmpty else {
             singleMessageAlertView(titleText: "Invalid Input", message: "Please enter a valid username...", preferredStyle: .actionSheet)
-            return
+            return false
         }
         
         guard let password = passwordField.text ,
               password.count >= 8 ,
               !password.trimmingCharacters(in: .whitespaces).isEmpty else {
             singleMessageAlertView(titleText: "Invalid Input", message: "Password Must Be More Than 8 Character", preferredStyle: .actionSheet)
-            return
+            return false
         }
-        changViewController(storyBoardID: "MainViewController")
-    
+        return true
     }
+    
+    private func createUser(){
+        let profilePictureData = profileImageView.image?.pngData()
+        AuthenticationManager.shared.signUp(userName: userNameField.text!, email: emailField.text!, password: passwordField.text!, profilePicture: profilePictureData) {[weak self] Result in
+            DispatchQueue.main.async {
+                switch Result {
+                case .success(let user):
+                    self?.errorMessage.alpha = 0
+                    UserDefaults.standard.setValue(user.userName, forKey: "userName")
+                    UserDefaults.standard.setValue(user.emailID, forKey: "emailID")
+                    self?.changViewController(storyBoardID: "MainViewController")
+                case .failure(let error):
+                    self?.singleMessageAlertView(titleText: "Error Occured !!!", message: error.description, preferredStyle: .alert)
+                  
+                }
+            }
+        }
+    }
+    
     
     //Action For SignInButton pressed log in 
     @IBAction func signInButtonPressed(_ sender: Any) {
         changViewController(storyBoardID: String(describing: SignInViewController.self))
     }
+    
+}
+
+
+//MARK: - Setting up image view delegate
+extension SignUpViewController: UIImagePickerControllerDelegate {
     
     
     //Action For adding Tap gesture to profile image view
@@ -89,12 +125,12 @@ class SignUpViewController: UIViewController , UIImagePickerControllerDelegate ,
             [weak self] _ in
             
             DispatchQueue.main.async {
-                    let picker = UIImagePickerController()
-                    picker.sourceType = .photoLibrary
-                    picker.allowsEditing = true
-                    picker.delegate = self
-                    self?.present(picker, animated: true, completion: nil)
-                    
+                let picker = UIImagePickerController()
+                picker.sourceType = .photoLibrary
+                picker.allowsEditing = true
+                picker.delegate = self
+                self?.present(picker, animated: true, completion: nil)
+                
             }
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel , handler: nil))
@@ -112,3 +148,5 @@ class SignUpViewController: UIViewController , UIImagePickerControllerDelegate ,
         profileImageView.image = profileImage as? UIImage
     }
 }
+
+

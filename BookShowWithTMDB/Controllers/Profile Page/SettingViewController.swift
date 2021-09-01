@@ -14,9 +14,16 @@ class SettingViewController: UIViewController {
     }
     @IBAction func settingButtonTapped(_ sender: Any) {
         let actionSheet = UIAlertController(title: "Are you sure ?", message: "Continue with signout", preferredStyle: .actionSheet)
-        let signoutAction = UIAlertAction(title: "Sign Out", style: .default) { _ in
-            self.cleanCache()
-            self.changViewController(storyBoardID: String(describing: SignInViewController.self ))
+        let signoutAction = UIAlertAction(title: "Sign Out", style: .default) { [weak self] _ in
+            AuthenticationManager.shared.signOut { success in
+                if success{
+                    DispatchQueue.main.async{
+                        self?.dismiss(animated: true, completion: nil)
+                        self?.cleanCache()
+                       
+                    }
+                }
+            }
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         

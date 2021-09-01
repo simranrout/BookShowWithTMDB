@@ -66,6 +66,12 @@
                                                     <action selector="signUpButtonTapped:" destination="rva-qq-krL" eventType="touchUpInside" id="TaQ-EK-luv"/>
                                                 </connections>
                                             </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B8z-jT-vLV">
+                                                <rect key="frame" x="60" y="495" width="200" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                                <color key="textColor" name="Theme Color"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
@@ -83,10 +89,13 @@
                                             <constraint firstItem="fjC-dH-o6H" firstAttribute="trailing" secondItem="NUu-rb-FMY" secondAttribute="trailing" id="fat-Nd-G2D"/>
                                             <constraint firstItem="jJ6-OQ-N4s" firstAttribute="leading" secondItem="Vc5-il-D1I" secondAttribute="leading" id="grk-40-VvZ"/>
                                             <constraint firstItem="Vc5-il-D1I" firstAttribute="top" secondItem="NUu-rb-FMY" secondAttribute="bottom" constant="20" id="hcw-jj-5GO"/>
+                                            <constraint firstItem="B8z-jT-vLV" firstAttribute="top" secondItem="hkI-SX-9r2" secondAttribute="bottom" constant="10" id="i5h-So-KcS"/>
                                             <constraint firstItem="NUu-rb-FMY" firstAttribute="top" secondItem="BNM-K5-fUv" secondAttribute="top" constant="20" id="nBU-N9-7mx"/>
+                                            <constraint firstItem="B8z-jT-vLV" firstAttribute="trailing" secondItem="hkI-SX-9r2" secondAttribute="trailing" id="nba-sy-sUj"/>
                                             <constraint firstItem="jJ6-OQ-N4s" firstAttribute="top" secondItem="Vc5-il-D1I" secondAttribute="bottom" constant="20" id="pT9-QA-rjh"/>
                                             <constraint firstItem="NUu-rb-FMY" firstAttribute="leading" secondItem="BNM-K5-fUv" secondAttribute="leading" id="qTy-Bp-lno"/>
                                             <constraint firstAttribute="trailing" secondItem="NUu-rb-FMY" secondAttribute="trailing" id="udB-kP-AbJ"/>
+                                            <constraint firstItem="B8z-jT-vLV" firstAttribute="leading" secondItem="hkI-SX-9r2" secondAttribute="leading" id="yIQ-yI-gaS"/>
                                             <constraint firstItem="Vc5-il-D1I" firstAttribute="centerY" secondItem="BNM-K5-fUv" secondAttribute="centerY" id="yL4-lf-nfE"/>
                                             <constraint firstItem="Vc5-il-D1I" firstAttribute="centerX" secondItem="BNM-K5-fUv" secondAttribute="centerX" id="yUp-BO-f3e"/>
                                         </constraints>
@@ -118,6 +127,7 @@
                     <navigationItem key="navigationItem" id="FG1-Yb-auT"/>
                     <connections>
                         <outlet property="backgroundImageView" destination="NUu-rb-FMY" id="FSl-OW-Asr"/>
+                        <outlet property="errorMessage" destination="B8z-jT-vLV" id="TY6-Xw-YcY"/>
                         <outlet property="password" destination="jJ6-OQ-N4s" id="6Yy-IQ-f2I"/>
                         <outlet property="signInButton" destination="qdJ-UP-H4Q" id="dnB-6J-sLG"/>
                         <outlet property="signInScrollView" destination="9Ga-HN-Njd" id="cn0-U3-IOh"/>
@@ -200,18 +210,27 @@
                                                     <constraint firstItem="X2t-vK-lG2" firstAttribute="trailing" secondItem="El9-ex-8Uj" secondAttribute="trailing" id="DPQ-xX-Cgs"/>
                                                 </constraints>
                                             </stackView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EcW-IT-pBa">
+                                                <rect key="frame" x="60" y="422" width="200" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                                <color key="textColor" name="Theme Color"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="r23-kv-IAc" secondAttribute="trailing" constant="30" id="0hI-5A-46v"/>
                                             <constraint firstItem="J3u-Jh-HPI" firstAttribute="top" secondItem="r23-kv-IAc" secondAttribute="bottom" constant="30" id="5lx-nF-uWn"/>
                                             <constraint firstItem="J3u-Jh-HPI" firstAttribute="centerX" secondItem="r23-kv-IAc" secondAttribute="centerX" id="5nn-Rx-Efo"/>
+                                            <constraint firstItem="EcW-IT-pBa" firstAttribute="trailing" secondItem="X2t-vK-lG2" secondAttribute="trailing" id="Nmo-vN-bsn"/>
                                             <constraint firstItem="Bn7-2H-eDY" firstAttribute="top" secondItem="l36-SW-1kS" secondAttribute="top" constant="40" id="Wfo-Hr-CTv"/>
                                             <constraint firstAttribute="trailing" secondItem="J3u-Jh-HPI" secondAttribute="trailing" constant="60" id="X2f-yw-ead"/>
                                             <constraint firstItem="r23-kv-IAc" firstAttribute="leading" secondItem="l36-SW-1kS" secondAttribute="leading" constant="30" id="Xe7-bG-8vp"/>
+                                            <constraint firstItem="EcW-IT-pBa" firstAttribute="leading" secondItem="X2t-vK-lG2" secondAttribute="leading" id="Z9Q-fQ-zds"/>
                                             <constraint firstItem="Bn7-2H-eDY" firstAttribute="width" secondItem="l36-SW-1kS" secondAttribute="width" multiplier="0.25" id="cye-84-7jr"/>
                                             <constraint firstItem="Bn7-2H-eDY" firstAttribute="centerX" secondItem="l36-SW-1kS" secondAttribute="centerX" id="emi-3V-1S3"/>
                                             <constraint firstItem="J3u-Jh-HPI" firstAttribute="leading" secondItem="l36-SW-1kS" secondAttribute="leading" constant="60" id="iry-NJ-651"/>
+                                            <constraint firstItem="EcW-IT-pBa" firstAttribute="top" secondItem="X2t-vK-lG2" secondAttribute="bottom" constant="10" id="kqX-WK-XVZ"/>
                                             <constraint firstItem="r23-kv-IAc" firstAttribute="top" secondItem="Bn7-2H-eDY" secondAttribute="bottom" constant="30" id="xBL-10-gJh"/>
                                         </constraints>
                                     </view>
@@ -242,6 +261,7 @@
                         <outlet property="PasswordField" destination="1qb-JB-69B" id="wCl-Ij-CVo"/>
                         <outlet property="ProfileImageView" destination="Bn7-2H-eDY" id="S2e-FR-Gwd"/>
                         <outlet property="emailField" destination="YqU-3i-Se5" id="Krk-YL-Eev"/>
+                        <outlet property="errorMessage" destination="EcW-IT-pBa" id="AZZ-Er-mop"/>
                         <outlet property="passwordField" destination="1qb-JB-69B" id="ARo-1R-cLf"/>
                         <outlet property="profileImageView" destination="Bn7-2H-eDY" id="MwQ-Rr-aCO"/>
                         <outlet property="signInButton" destination="X2t-vK-lG2" id="cBS-yx-QKT"/>

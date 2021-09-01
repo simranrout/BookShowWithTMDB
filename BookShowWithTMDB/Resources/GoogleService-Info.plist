@@ -3,32 +3,32 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>11447329731-8quv5hui8rlrad7k23snhedg25pf1cog.apps.googleusercontent.com</string>
+	<string>321649866594-6b1v2sjq755rc275mho4hdqp239fuoc3.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.11447329731-8quv5hui8rlrad7k23snhedg25pf1cog</string>
+	<string>com.googleusercontent.apps.321649866594-6b1v2sjq755rc275mho4hdqp239fuoc3</string>
 	<key>API_KEY</key>
-	<string>AIzaSyACFdd7ZVHVuqTusu7r_MoaULxac83woxw</string>
+	<string>AIzaSyA__Wq3kTd0eXp2QJSHBtbzWw_2ZjE9UJo</string>
 	<key>GCM_SENDER_ID</key>
-	<string>11447329731</string>
+	<string>321649866594</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>Simran.BookShowWithTMDB</string>
 	<key>PROJECT_ID</key>
-	<string>bookshowtmdbdemo</string>
+	<string>bookshowwithtmdb</string>
 	<key>STORAGE_BUCKET</key>
-	<string>bookshowtmdbdemo.appspot.com</string>
+	<string>bookshowwithtmdb.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_GCM_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:11447329731:ios:d5c4b13fefb8cfe9461376</string>
+	<string>1:321649866594:ios:892956742e158e3a89de3b</string>
 </dict>
 </plist>

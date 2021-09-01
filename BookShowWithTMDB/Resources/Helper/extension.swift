@@ -76,3 +76,24 @@ extension UIScrollView {
     }
 }
 
+extension Encodable{
+    func convertToDictionary() -> [String: Any]{
+        do{
+            let encodedData = try JSONEncoder().encode(self)
+            let jsonData = try JSONSerialization.jsonObject(with: encodedData, options: .allowFragments) as? [String: Any]
+            return jsonData ?? ["":""]
+        }
+        catch{
+            print("error occured")
+        }
+        return ["":""]
+    }
+}
+
+
+extension UILabel {
+    func showText(_ message: String) {
+        self.alpha = 1
+        self.text = message
+    }
+}

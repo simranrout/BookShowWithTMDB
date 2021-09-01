@@ -20,7 +20,6 @@
 		F539A1B626C4E2F30062D666 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F539A1B426C4E2F30062D666 /* Main.storyboard */; };
 		F539A1B826C4E2F40062D666 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F539A1B726C4E2F40062D666 /* Assets.xcassets */; };
 		F539A1BB26C4E2F40062D666 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F539A1B926C4E2F40062D666 /* LaunchScreen.storyboard */; };
-		F539A1C926C4EB490062D666 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F539A1C826C4EB490062D666 /* GoogleService-Info.plist */; };
 		F539A1CB26C508600062D666 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F539A1CA26C508600062D666 /* SignUpViewController.swift */; };
 		F539A1CD26C5119D0062D666 /* MovieTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F539A1CC26C5119D0062D666 /* MovieTabViewController.swift */; };
 		F539A1CF26C572060062D666 /* ProfileTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F539A1CE26C572060062D666 /* ProfileTabViewController.swift */; };
@@ -57,6 +56,8 @@
 		F5D271E126C7929500ACD107 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D271E026C7929500ACD107 /* Constants.swift */; };
 		F5D271E326C8093E00ACD107 /* extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D271E226C8093E00ACD107 /* extension.swift */; };
 		F5D271E526C80D1D00ACD107 /* resultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D271E426C80D1D00ACD107 /* resultModel.swift */; };
+		F5D4E94D26DF828800835D7F /* UserCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D4E94C26DF828800835D7F /* UserCredential.swift */; };
+		F5D4E94F26DF925E00835D7F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F5D4E94E26DF925E00835D7F /* GoogleService-Info.plist */; };
 		F5FE4A5F26CE467E00A411BD /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FE4A5E26CE467E00A411BD /* MovieDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -78,7 +79,6 @@
 		F539A1B726C4E2F40062D666 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F539A1BA26C4E2F40062D666 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F539A1BC26C4E2F40062D666 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F539A1C826C4EB490062D666 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F539A1CA26C508600062D666 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		F539A1CC26C5119D0062D666 /* MovieTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTabViewController.swift; sourceTree = "<group>"; };
 		F539A1CE26C572060062D666 /* ProfileTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +115,8 @@
 		F5D271E026C7929500ACD107 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F5D271E226C8093E00ACD107 /* extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extension.swift; sourceTree = "<group>"; };
 		F5D271E426C80D1D00ACD107 /* resultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resultModel.swift; sourceTree = "<group>"; };
+		F5D4E94C26DF828800835D7F /* UserCredential.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCredential.swift; sourceTree = "<group>"; };
+		F5D4E94E26DF925E00835D7F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F5FE4A5E26CE467E00A411BD /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -233,7 +235,7 @@
 			children = (
 				F581A09226D6A5C00002D189 /* Helper */,
 				F539A1AE26C4E2F30062D666 /* AppDelegate.swift */,
-				F539A1C826C4EB490062D666 /* GoogleService-Info.plist */,
+				F5D4E94E26DF925E00835D7F /* GoogleService-Info.plist */,
 				F539A1B026C4E2F30062D666 /* SceneDelegate.swift */,
 				F539A1B726C4E2F40062D666 /* Assets.xcassets */,
 			);
@@ -265,6 +267,7 @@
 		F539A1C626C4E3560062D666 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F5D4E94B26DF826C00835D7F /* Authentication Details */,
 				F510130D26CFFFFC00B41DD5 /* Similar Movie Details */,
 				F510130C26CFFFEA00B41DD5 /* Credits Details */,
 				F510130B26CFFFD700B41DD5 /* Movie Details */,
@@ -421,6 +424,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		F5D4E94B26DF826C00835D7F /* Authentication Details */ = {
+			isa = PBXGroup;
+			children = (
+				F5D4E94C26DF828800835D7F /* UserCredential.swift */,
+			);
+			path = "Authentication Details";
+			sourceTree = "<group>";
+		};
 		F5DD200226CF929700166262 /* Movie TableView Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -503,8 +514,8 @@
 				F50E57FC26DDFB5F0007FA5C /* Profile.storyboard in Resources */,
 				F539A1BB26C4E2F40062D666 /* LaunchScreen.storyboard in Resources */,
 				F50E57FE26DE0C510007FA5C /* Shows.storyboard in Resources */,
+				F5D4E94F26DF925E00835D7F /* GoogleService-Info.plist in Resources */,
 				F56FE25E26D50EEF0066DFB8 /* SimilarMoviesTableViewCell.xib in Resources */,
-				F539A1C926C4EB490062D666 /* GoogleService-Info.plist in Resources */,
 				F539A1B826C4E2F40062D666 /* Assets.xcassets in Resources */,
 				F581A09426D6A5E80002D189 /* Genre.json in Resources */,
 				F56C034226D3B5F2006E63CB /* CreditTableViewCell.xib in Resources */,
@@ -584,6 +595,7 @@
 				F59364B426CB9D7B00F646C0 /* FetchingImage.swift in Sources */,
 				F539A1CF26C572060062D666 /* ProfileTabViewController.swift in Sources */,
 				F581A09A26D6A68B0002D189 /* GenreModel.swift in Sources */,
+				F5D4E94D26DF828800835D7F /* UserCredential.swift in Sources */,
 				F539A1CB26C508600062D666 /* SignUpViewController.swift in Sources */,
 				F581A09626D6A5FF0002D189 /* GenreParsing.swift in Sources */,
 				F56FE26026D5162C0066DFB8 /* SimilarMoviesDetails.swift in Sources */,

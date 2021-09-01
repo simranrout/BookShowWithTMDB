@@ -18,4 +18,14 @@ final class FirestoreDatabaseManager {
     private init(){}
     
     let firestore = Firestore.firestore()
+    
+    
+    public func createUser(newUser: UserCredential , completion: @escaping (Bool)-> Void) {
+        //create reference
+        let reference = firestore.document("Users/\(newUser.userName)")
+        reference.setData(newUser.convertToDictionary()) { errorOcuured in
+            print("issues", errorOcuured , newUser.convertToDictionary())
+            completion(errorOcuured == nil)
+        }
+    }
 }
