@@ -18,9 +18,8 @@ class SettingViewController: UIViewController {
             AuthenticationManager.shared.signOut { success in
                 if success{
                     DispatchQueue.main.async{
-                        self?.dismiss(animated: true, completion: nil)
+                        self?.changViewController(storyBoardID: String(describing: SignInViewController.self))
                         self?.cleanCache()
-                       
                     }
                 }
             }

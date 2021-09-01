@@ -23,19 +23,7 @@ class ProfileTabViewController: UIViewController {
         userNameTextLabel.text = UserDefaults.standard.string(forKey: "userName")
         emailIdTextLabel.text = UserDefaults.standard.string(forKey: "emailID")
     }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        changeRootVC()
-    }
-    private func changeRootVC(){
-        guard !AuthenticationManager.shared.isSignedIn else {
-            return
-        }
-        let signInVC = SignInViewController()
-        let updatedRootVC = UINavigationController(rootViewController: signInVC)
-        present(updatedRootVC, animated: true, completion: nil)
-        
-    }
+
     
     /*
      In a storyboard-based application, you will often want to do a little preparation before navigation
