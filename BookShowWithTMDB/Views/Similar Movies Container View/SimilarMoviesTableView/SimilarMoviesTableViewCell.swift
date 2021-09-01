@@ -11,11 +11,11 @@ class SimilarMoviesTableViewCell: UITableViewCell  {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    static var identifier = "SimilarMoviesTableViewCell"
+    static var identifier = String(describing: SimilarMoviesTableViewCell.self)
     var similarMovies = [SimilarMoviesDetails]()
     
     static func nib() -> UINib{
-        return UINib(nibName: "SimilarMoviesTableViewCell", bundle: nil)
+        return UINib(nibName: identifier, bundle: nil)
     }
     
     override func awakeFromNib() {
@@ -64,9 +64,7 @@ extension SimilarMoviesTableViewCell: UICollectionViewDelegate , UICollectionVie
     
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-       
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize { 
         return CGSize(width: 260, height: 410.0)
     
     }

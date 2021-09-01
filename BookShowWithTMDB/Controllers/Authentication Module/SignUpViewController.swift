@@ -23,17 +23,16 @@ class SignUpViewController: UIViewController , UIImagePickerControllerDelegate ,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        userNameField.autocorrectionType = .no
-        emailField.autocorrectionType = .no
-        profileImageView.layer.masksToBounds = true
+        userNameField?.autocorrectionType = .no
+        emailField?.autocorrectionType = .no
+        profileImageView?.layer.masksToBounds = true
         profileImageView.layer.cornerRadius = 45
         profileImageView.contentMode = .scaleAspectFill
         signUpButton.layer.cornerRadius = 12
 
         addKeyboardTapGesture()
+        signUpScrollView.addObserver()
 
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardAppearedOnScreen), name: UIResponder.keyboardDidShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDisappredOnScreen), name: UIResponder.keyboardDidHideNotification, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,13 +56,13 @@ class SignUpViewController: UIViewController , UIImagePickerControllerDelegate ,
             singleMessageAlertView(titleText: "Invalid Input", message: "Password Must Be More Than 8 Character", preferredStyle: .actionSheet)
             return
         }
-        changViewController(storyBoardID: "MainViewVC")
+        changViewController(storyBoardID: "MainViewController")
     
     }
     
     //Action For SignInButton pressed log in 
     @IBAction func signInButtonPressed(_ sender: Any) {
-       changViewController(storyBoardID: "SignInVC")
+        changViewController(storyBoardID: String(describing: SignInViewController.self))
     }
     
     
@@ -112,25 +111,4 @@ class SignUpViewController: UIViewController , UIImagePickerControllerDelegate ,
         }
         profileImageView.image = profileImage as? UIImage
     }
-    
-    
-    // MARK: - add  and remove scroll view on key board appearance
-    @objc func keyboardAppearedOnScreen(_ notification: NSNotification){
-         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-            keyboardHeight = keyboardFrame.cgRectValue.height
-            if !isScrollViewActive{
-                self.signUpScrollView.contentSize = CGSize(width: self.view.frame.width, height: self.signUpScrollView.frame.height + keyboardHeight)
-               
-                isScrollViewActive = true
-            }
-               }
-     }
-     @objc func keyboardDisappredOnScreen(){
-        if isScrollViewActive{
-            self.signUpScrollView.contentSize = CGSize(width: self.view.frame.width, height: self.signUpScrollView.frame.height - keyboardHeight)
-            isScrollViewActive = false
-        }
-     }
-          
-    
 }

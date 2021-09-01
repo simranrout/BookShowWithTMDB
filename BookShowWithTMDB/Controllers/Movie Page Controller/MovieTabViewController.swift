@@ -26,10 +26,6 @@ class MovieTabViewController: UIViewController   {
         configureTableView()
         configureSearchBar()
         configureMovieViewModel()
-        
-      
-            
-        
     }
     
     private func configureMovieViewModel(){
@@ -73,7 +69,8 @@ class MovieTabViewController: UIViewController   {
     }
     
     private func searchTextFromMovieList(_ searchText: String){
-        guard searchText.trimmingCharacters(in: .whitespaces).isEmpty else {
+        guard searchText.trimmingCharacters(in: .whitespaces).isEmpty || self.results.count == 0 else {
+            print("here", self.results.count)
             let text = searchText
             filterMovieList = []
             for i in 0...self.results.count-1{
@@ -124,7 +121,6 @@ extension MovieTabViewController :  UITableViewDelegate , UITableViewDataSource 
             if indexPath.row == results.count{
                 let loadCell = tableView.dequeueReusableCell(withIdentifier: LoadMoreTableViewCell.loadMorePrototypeCellID,
                                                              for: indexPath) as! LoadMoreTableViewCell
-                //return cell
                 if results.count > 0 {
                     loadMore()
                 }

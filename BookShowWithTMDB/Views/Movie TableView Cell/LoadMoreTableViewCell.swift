@@ -9,16 +9,16 @@ import UIKit
 
 class LoadMoreTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var loadMore: UIActivityIndicatorView!
-    static var loadMorePrototypeCellID = "LoadMoreTableViewCell"
-    
-   static func nib() -> UINib{
-        return UINib(nibName: "LoadMoreTableViewCell", bundle: nil)
+    static var loadMorePrototypeCellID  = String(describing: LoadMoreTableViewCell.self)
+    @IBOutlet weak var loadmoreindi: UIActivityIndicatorView!
+    static func nib() -> UINib{
+        return UINib(nibName: loadMorePrototypeCellID, bundle: nil)
     }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        loadMore?.startAnimating()
+     
+       
             }
 
     override func prepareForReuse() {
@@ -29,6 +29,7 @@ class LoadMoreTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+        loadmoreindi.startAnimating()
 
     }
 }

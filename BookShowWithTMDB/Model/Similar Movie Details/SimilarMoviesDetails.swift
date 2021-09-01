@@ -12,4 +12,10 @@ struct SimilarMoviesDetails: Codable{
     var original_title: String
     var original_language: String
     var poster_path: String?
+    var thumbnailURL: String {
+        guard let posterPath = poster_path else {
+            return ""
+        }
+        return Constants.thumbnailURL + ImageSize.MovieDetailViewImageSize + posterPath
+    }
 }

@@ -30,6 +30,7 @@ enum NetworkError:  Error, Equatable {
             return value
         }
     }
+    
 }
 
 

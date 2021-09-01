@@ -14,8 +14,7 @@ class MovieTableViewCell: UITableViewCell {
     @IBOutlet weak var movieReleaseDateTextLabel: UILabel!
     @IBOutlet weak var bookButton: UILabel!
     
-    static var moviePrototypeCellID = "MovieTableViewCell"
-    var movieDetailsGlobal: MovieModel?
+    static var moviePrototypeCellID = String(describing: MovieTableViewCell.self)
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,21 +28,12 @@ class MovieTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func displayingDataOnCell(_ MovieDetailsLocal: MovieModel){
-        
-        self.movieDetailsGlobal = MovieDetailsLocal
-        guard self.movieDetailsGlobal != nil else {
-            return
-        }
-       
-        movieTitleTextLabel.text = movieDetailsGlobal?.original_title
-        movieLanguageTextLabel.text = movieDetailsGlobal?.original_language.languageCodeToLanguageName()
-        movieReleaseDateTextLabel.text  = movieDetailsGlobal?.release_date.convertToDate()
-        guard movieDetailsGlobal!.poster_path != nil else {
-            return
-        }
-        let imageURL = Constants.thumbnailURL + ImageSize.MovieTableViewImageSize + (movieDetailsGlobal!.poster_path)!
-        moviePosterImageView.fetchImageFromURL(fetchedurl: imageURL)
+    func displayingDataOnCell(_ movieDetailsLocal: MovieModel){
+    
+        movieTitleTextLabel.text = movieDetailsLocal.original_title
+        movieLanguageTextLabel.text = movieDetailsLocal.original_language.languageCodeToLanguageName()
+        movieReleaseDateTextLabel.text  = movieDetailsLocal.release_date.convertToDate
+        moviePosterImageView.fetchImageFromURL(fetchedurl: movieDetailsLocal.thumbnailURL)
     }
 }
 

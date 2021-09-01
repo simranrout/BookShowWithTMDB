@@ -8,15 +8,10 @@
 import UIKit
 
 class CreditTableViewCell: UITableViewCell , UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout{
- 
-    
-
-    static let identifier = "CreditTableViewCell"
     
     @IBOutlet weak var creditType: UILabel!
-    
     @IBOutlet weak var collectionView: UICollectionView!
-    
+    static let identifier = String(describing: CreditTableViewCell.self)
     var creditModel = [MovieMemberDetails]()
     
     static func nib() -> UINib{
@@ -32,18 +27,7 @@ class CreditTableViewCell: UITableViewCell , UICollectionViewDelegate , UICollec
         collectionView.dataSource = self
     }
     
-    //MARK: - UICollectionViewDelegateFlowLayout
 
-       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
-       {
-          return CGSize(width: 250.0, height: 250.0)
-       }
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
     //MARK: - CollectionView Functions
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return creditModel.count
@@ -65,4 +49,12 @@ class CreditTableViewCell: UITableViewCell , UICollectionViewDelegate , UICollec
             collectionView.reloadData()
         }
     }
+    
+    //MARK: - UICollectionViewDelegateFlowLayout
+
+       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
+       {
+          return CGSize(width: 250.0, height: 250.0)
+       }
+    
 }

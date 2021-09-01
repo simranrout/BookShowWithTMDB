@@ -14,33 +14,31 @@ protocol MoviesListFetchprotocol  {
 }
 
 //MARK: - Fetching Movie List
-class MoviesListViewModel{
+class MoviesListViewModel: NSObject, URLSessionTaskDelegate{
     
     var movieResults = [MovieModel]()
     var delegate: MoviesListFetchprotocol?
     var genreParse = GenreParsing()
     @Published private (set) var state: MovieApiCallStatus =  .loadingCompleted
-    
+
     func movieDataFetch(_ page: Int ) {
         genreParse.genreJSONParse()
-        let url = URL(string: Constants.base_URL + Constants.movieDetails_URL+String(page))
+        let url = URL(string: Constants.movieDetails_URL+String(page))
         state = .loading
         URLSession.shared.getData(url: url, structureType: resultModel.self)
         {   [weak self] result in
             DispatchQueue.main.async {
-            switch result{
-           
-            case .success(let resultModel):
+                switch result{
                 
+                case .success(let resultModel):
                     self?.movieResults = resultModel.results!
                     self?.delegate?.fetchMovieList(self!.movieResults)
                     self?.state = .loadingCompleted
-               
-           
-            case .failure(let error):
-                self?.state = .errorOccured(error)
+                    
+                case .failure(let error):
+                    self?.state = .errorOccured(error)
+                }
             }
-        }
         }
     }
 }

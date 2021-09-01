@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BNx-9h-87x">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--ProfileView-->
+        <scene sceneID="oED-ft-VpV">
+            <objects>
+                <viewController id="LwE-rI-Vqa" customClass="ProfileTabViewController" customModule="BookShowWithTMDB" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lyt-KV-usP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile Page" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JFk-4G-ir1">
+                                <rect key="frame" x="161.5" y="383" width="91" height="130"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="130" id="vBE-X8-fH7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Ab-qC-3zK">
+                                <rect key="frame" x="0.0" y="88" width="414" height="44"/>
+                            </navigationBar>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="bpZ-3Y-Yj9"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="JFk-4G-ir1" firstAttribute="centerY" secondItem="lyt-KV-usP" secondAttribute="centerY" id="0Nf-Oy-gzd"/>
+                            <constraint firstItem="0Ab-qC-3zK" firstAttribute="centerX" secondItem="JFk-4G-ir1" secondAttribute="centerX" id="2N4-Oz-ljj"/>
+                            <constraint firstItem="0Ab-qC-3zK" firstAttribute="top" secondItem="bpZ-3Y-Yj9" secondAttribute="top" id="9Et-Rg-yEM"/>
+                            <constraint firstItem="JFk-4G-ir1" firstAttribute="centerX" secondItem="lyt-KV-usP" secondAttribute="centerX" id="C4v-Jb-raQ"/>
+                            <constraint firstItem="0Ab-qC-3zK" firstAttribute="leading" secondItem="lyt-KV-usP" secondAttribute="leading" id="Pf8-8W-xi3"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Profile" image="person.circle" catalog="system" selectedImage="person.circle" id="M0k-HO-Mlx">
+                        <color key="badgeColor" name="Theme Color"/>
+                    </tabBarItem>
+                    <navigationItem key="navigationItem" title="ProfileView" id="HtJ-nm-wZv">
+                        <barButtonItem key="rightBarButtonItem" image="wrench.fill" catalog="system" id="64u-YA-uBJ">
+                            <color key="tintColor" name="Theme Color"/>
+                            <connections>
+                                <segue destination="HMI-Md-663" kind="show" id="LFh-jH-t2T"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q8v-Oo-Wvc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3462" y="433"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="lY4-ci-WZt">
+            <objects>
+                <viewController id="HMI-Md-663" customClass="SettingViewController" customModule="BookShowWithTMDB" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1Eh-2a-R2z">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xdt-c7-baU">
+                                <rect key="frame" x="10" y="128" width="394" height="34"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="Sign Out">
+                                    <color key="titleColor" name="Theme Color"/>
+                                </state>
+                                <connections>
+                                    <action selector="settingButtonTapped:" destination="HMI-Md-663" eventType="touchUpInside" id="orw-0A-WVf"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="FdU-8F-4Ff"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="tintColor" name="Theme Color"/>
+                        <constraints>
+                            <constraint firstItem="FdU-8F-4Ff" firstAttribute="trailing" secondItem="xdt-c7-baU" secondAttribute="trailing" constant="10" id="WTB-aE-BRM"/>
+                            <constraint firstItem="xdt-c7-baU" firstAttribute="leading" secondItem="FdU-8F-4Ff" secondAttribute="leading" constant="10" id="sDF-5a-SZS"/>
+                            <constraint firstItem="xdt-c7-baU" firstAttribute="top" secondItem="FdU-8F-4Ff" secondAttribute="top" constant="40" id="xaw-bu-Ajf"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Settings" id="f5v-OS-g5A"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o3i-Za-Dg9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4260" y="432.04225352112678"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="Uum-Ph-TJa">
+            <objects>
+                <navigationController id="BNx-9h-87x" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="wh1-AG-feS"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fez-e4-OPo">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="LwE-rI-Vqa" kind="relationship" relationship="rootViewController" id="nBp-zr-13c"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0xm-uM-6BU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2448" y="433"/>
+        </scene>
+    </scenes>
+    <color key="tintColor" name="Theme Color"/>
+    <resources>
+        <image name="person.circle" catalog="system" width="128" height="121"/>
+        <image name="wrench.fill" catalog="system" width="128" height="125"/>
+        <namedColor name="Theme Color">
+            <color red="0.84299999475479126" green="0.097999997437000275" blue="0.125" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

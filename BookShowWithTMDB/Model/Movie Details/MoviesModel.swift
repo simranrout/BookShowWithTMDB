@@ -18,6 +18,12 @@ struct MovieModel: Codable {
     var id: Int
     var backdrop_path: String?
     var genre_ids: [Int]
+    var thumbnailURL: String {
+        guard let profilePath = poster_path else {
+            return ""
+        }
+        return Constants.thumbnailURL + ImageSize.MovieTableViewImageSize + profilePath
+    }
 }
 
  

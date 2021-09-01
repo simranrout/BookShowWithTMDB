@@ -59,9 +59,9 @@ class MovieDetailsViewController: UIViewController {
         guard updateMovieDetails != nil && updateMovieDetails?.id != nil else {
             return
         }
-        let MovieId = String(updateMovieDetails!.id)
-        creditsVM.endCreditsFetch(MovieID:MovieId)
-        similarVM.fetchData(MovieID: MovieId)
+        let movieId = String(updateMovieDetails!.id)
+        creditsVM.endCreditsFetch(movieID: movieId)
+        similarVM.fetchData(movieID: movieId)
     }
     
     
@@ -85,7 +85,7 @@ class MovieDetailsViewController: UIViewController {
         movieDescriptionTextLabel.text = updateMovieDetails?.overview
         movieTitleTextLabel.text   =    updateMovieDetails?.original_title
         movieLanguageTextLabel.text = updateMovieDetails?.original_language.languageCodeToLanguageName()
-        movieReleaseDateTextLabel.text = updateMovieDetails?.release_date.convertToDate()
+        movieReleaseDateTextLabel.text = updateMovieDetails?.release_date.convertToDate
         
      
         //updating Approval percentage and progress bar value

@@ -14,9 +14,9 @@ class CreditCellCollectionView: UICollectionViewCell {
     @IBOutlet weak var genderTextLabel: UILabel!
     @IBOutlet weak var occupationTextLabel: UILabel!
     
-    static let Identifier = "CreditCellCollectionView"
+    static let Identifier = String(describing: CreditCellCollectionView.self)
     static func nib()-> UINib{
-        return UINib(nibName: "CreditCellCollectionView", bundle: nil)
+        return UINib(nibName: Identifier, bundle: nil)
     }
     
     override func awakeFromNib() {
@@ -28,27 +28,10 @@ class CreditCellCollectionView: UICollectionViewCell {
     }
     
     public func configure(with movieMemberModel: MovieMemberDetails ){
-        
-        if movieMemberModel.profile_path == nil{
-            castImageView.image = UIImage(systemName: "person.circle")!
-        }
-        else{
-            let imageUrl = Constants.thumbnailURL+ImageSize.MovieTableViewImageSize+movieMemberModel.profile_path!
-            castImageView.fetchImageFromURL(fetchedurl: imageUrl)
-        }
-        if movieMemberModel.gender == 1{
-            self.genderTextLabel.text = "Female"
-        }
-        else if movieMemberModel.gender == 2{
-            self.genderTextLabel.text = "Male"
-        }
-        else{
-            self.genderTextLabel.text = "Others"
-        }
-
-      self.nameTextLabel.text = movieMemberModel.original_name
-     self.occupationTextLabel.text = movieMemberModel.known_for_department
-        
+        self.genderTextLabel.text = movieMemberModel.genderName
+        self.nameTextLabel.text = movieMemberModel.original_name
+        self.occupationTextLabel.text = movieMemberModel.known_for_department
+        castImageView.fetchImageFromURL(fetchedurl: movieMemberModel.profileURL)
     }
 
 }

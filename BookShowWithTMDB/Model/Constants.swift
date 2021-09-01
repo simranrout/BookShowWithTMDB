@@ -12,10 +12,11 @@ struct Constants {
     static var request = "now_playing"
     static var base_URL = "https://api.themoviedb.org/3/movie/"
     static var thumbnailURL = "https://image.tmdb.org/t/p/"
-    static var movieDetails_URL = "\(request)?api_key=\(apiKey)&page="
+    static var movieDetails_URL = base_URL + "\(request)?api_key=\(apiKey)&page="
     static var credit_URL = "/credits?api_key=\(apiKey)&language=en-US"
     static var trailer_URL = "https://www.youtube.com/watch?v="
     static var similarMovie_URL = "/similar?api_key=\(apiKey)&language=en-US&page=1"
+    static var login: LoginCase = .newUser
    
 }
 
@@ -23,3 +24,10 @@ struct ImageSize {
     static var MovieTableViewImageSize = "w154"
     static var MovieDetailViewImageSize = "w780"
 }
+
+enum LoginCase {
+    case loggedIN
+    case newUser
+}
+
+

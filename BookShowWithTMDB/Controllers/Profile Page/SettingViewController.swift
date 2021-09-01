@@ -13,15 +13,16 @@ class SettingViewController: UIViewController {
         
     }
     @IBAction func settingButtonTapped(_ sender: Any) {
-        let actionSheet = UIAlertController(title: "Are you sure ?", message: "continue to signout", preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: "Are you sure ?", message: "Continue with signout", preferredStyle: .actionSheet)
         let signoutAction = UIAlertAction(title: "Sign Out", style: .default) { _ in
             self.cleanCache()
-            self.changViewController(storyBoardID: "SignInVC")
+            self.changViewController(storyBoardID: String(describing: SignInViewController.self ))
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         
         actionSheet.addAction(signoutAction)
         actionSheet.addAction(cancelAction)
+        actionSheet.view.tintColor = UIColor(named: "Theme Color")
         present(actionSheet, animated: true, completion: nil)
     }
     

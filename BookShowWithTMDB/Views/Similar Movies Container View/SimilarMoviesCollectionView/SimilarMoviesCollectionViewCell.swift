@@ -18,9 +18,9 @@ class SimilarMoviesCollectionViewCell: UICollectionViewCell {
     
     //MARK: - collectionview ID and nib
     
-    static var identifier = "SimilarMoviesCollectionViewCell"
+    static var identifier = String(describing: SimilarMoviesCollectionViewCell.self)
     static func nib()-> UINib{
-        return UINib(nibName: "SimilarMoviesCollectionViewCell", bundle: nil)
+        return UINib(nibName: identifier, bundle: nil)
     }
     
     override func awakeFromNib() {
@@ -29,10 +29,13 @@ class SimilarMoviesCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(with similarMoviesModel: SimilarMoviesDetails){
-        let imageUrl = Constants.thumbnailURL+ImageSize.MovieTableViewImageSize+similarMoviesModel.poster_path!
-        similarMovieImageView.fetchImageFromURL(fetchedurl: imageUrl)
         movieTitleTextLabel.text = similarMoviesModel.original_title
         languageTextLabel.text = similarMoviesModel.original_language.languageCodeToLanguageName()
-        releaseDate.text = similarMoviesModel.release_date.convertToDate()
+        releaseDate.text = similarMoviesModel.release_date.convertToDate
+        guard similarMoviesModel.thumbnailURL != "" else {
+            similarMovieImageView.image = UIImage(systemName: "person.circle")
+            return
+        }
+        similarMovieImageView.fetchImageFromURL(fetchedurl: similarMoviesModel.thumbnailURL)
     }
 }

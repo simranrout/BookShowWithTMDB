@@ -15,6 +15,8 @@ extension URLSession {
     }
     
     func getData<T: Codable>(url: URL? , structureType: T.Type , completion: @escaping (Result<T, NetworkError>)  -> Void){
+        let configuration = URLSessionConfiguration.default
+        configuration.waitsForConnectivity = true
         
         guard let url = url else {
             completion(.failure(.badRequest))
@@ -33,12 +35,14 @@ extension URLSession {
             }
            
             do{
+                configuration.waitsForConnectivity = false
                 let decoder = JSONDecoder()
                 let resultModel = try decoder.decode(structureType , from: responseData!)
                 completion(.success(resultModel))
             }
             catch {
                 completion(.failure(.JSONDecoder))
+                
             }
         }
         task.resume()
